@@ -1,0 +1,60 @@
+{
+  "name": "nodejs-rest-http-crud",
+  "description": "",
+  "author": "Red Hat, Inc.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "tape test/*.js | tap-spec",
+    "lint": "eslint test/*.js app.js bin/*",
+    "prepare": "nsp check",
+    "coverage": "nyc npm test",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "ci": "npm run lint && npm run coveralls",
+    "dependencyCheck": "szero . --ci",
+    "release": "standard-version",
+    "openshift": "nodeshift --osc.strictSSL=false",
+    "start": "PORT=8080 node ./bin/www"
+  },
+  "files": [
+    "package.json",
+    "app.js",
+    "public",
+    "bin",
+    "db",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bucharest-gold/nodejs-rest-http-crud.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bucharest-gold/nodejs-rest-http-crud/issues"
+  },
+  "homepage": "https://github.com/bucharest-gold/nodejs-rest-http-crud#readme",
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "eslint": "~4.4.1",
+    "eslint-config-semistandard": "~11.0.0",
+    "eslint-config-standard": "~10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "~3.5.0",
+    "eslint-plugin-react": "~7.2.0",
+    "eslint-plugin-standard": "~3.0.1",
+    "nodeshift": "^0.4.0",
+    "nsp": "~2.7.0",
+    "nyc": "~11.1.0",
+    "standard-version": "^4.2.0",
+    "supertest": "^3.0.0",
+    "szero": "^1.0.0",
+    "tap-spec": "~4.1.1",
+    "tape": "~4.8.0"
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "debug": "~3.0.0",
+    "express": "^4.15.3",
+    "kube-probe": "^0.1.0",
+    "pg": "^7.1.2"
+  }
+}
