@@ -28,17 +28,16 @@ const probe = require('kube-probe');
 
 const fruits = require('./api/fruits');
 const db = require('./db');
+const validations = require('./validations');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// perform validation of the :id param - TODO
-
 app.get('/api/fruits/:id', fruits.find);
 app.get('/api/fruits', fruits.findAll);
-app.post('/api/fruits', fruits.create);
-app.put('/api/fruits/:id', fruits.update);
+app.post('/api/fruits', validations.validateCreate, fruits.create);
+app.put('/api/fruits/:id', validations.validateUpdate, fruits.update);
 app.delete('/api/fruits/:id', fruits.remove);
 
 // Add a health check

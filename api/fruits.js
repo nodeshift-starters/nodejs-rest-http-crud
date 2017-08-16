@@ -3,7 +3,12 @@
 const db = require('../db');
 
 function find (request, response) {
-  db.query('SELECT * FROM products WHERE id = $1', [request.params.id]).then((result) => {
+  const {id} = request.params;
+  db.query('SELECT * FROM products WHERE id = $1', [id]).then((result) => {
+    if (result.rowCount === 0) {
+      response.status = 404;
+      return response.send(`Item ${id} not found`);
+    }
     return response.send(result.rows[0]);
   }).catch((err) => {
     response.status(400);
@@ -21,7 +26,8 @@ function findAll (request, response) {
 }
 
 function create (request, response) {
-  db.query('INSERT INTO products (name, stock) VALUES ($1, $2)', [request.body.name, request.body.stock]).then((result) => {
+  const {name, stock} = request.body;
+  db.query('INSERT INTO products (name, stock) VALUES ($1, $2)', [name, stock]).then((result) => {
     return response.sendStatus(201);
   }).catch((err) => {
     response.status(400);
@@ -30,7 +36,13 @@ function create (request, response) {
 }
 
 function update (request, response) {
-  db.query('UPDATE products SET name = $1, stock = $2 WHERE id = $3', [request.body.name, request.body.stock, request.params.id]).then((result) => {
+  const {name, stock} = request.body;
+  const {id} = request.params;
+  db.query('UPDATE products SET name = $1, stock = $2 WHERE id = $3', [name, stock, id]).then((result) => {
+    if (result.rowCount === 0) {
+      response.status = 404;
+      return response.send(`Unknown item ${id}`);
+    }
     return response.sendStatus(204);
   }).catch((err) => {
     response.status(400);
@@ -39,7 +51,12 @@ function update (request, response) {
 }
 
 function remove (request, response) {
-  db.query('DELETE FROM products WHERE id = $1', [request.params.id]).then((result) => {
+  const {id} = request.params;
+  db.query('DELETE FROM products WHERE id = $1', [id]).then((result) => {
+    if (result.rowCount === 0) {
+      response.status = 404;
+      return response.send(`Unknown item ${id}`);
+    }
     return response.sendStatus(204);
   }).catch((err) => {
     response.status(400);

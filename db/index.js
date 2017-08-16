@@ -1,6 +1,7 @@
 'use strict';
-const Pool = require('pg').Pool;
+const {Pool} = require('pg');
 
+// TODO - make dynaimc with env vars
 const connectionString = 'postgresql://luke:secret@localhost:5432/my_data';
 
 const pool = new Pool({
