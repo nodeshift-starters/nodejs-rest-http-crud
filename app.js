@@ -26,9 +26,9 @@ const app = express();
 
 const probe = require('kube-probe');
 
-const fruits = require('./api/fruits');
-const db = require('./db');
-const validations = require('./validations');
+const fruits = require('./lib/api/fruits');
+const db = require('./lib/db');
+const validations = require('./lib/validations');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
