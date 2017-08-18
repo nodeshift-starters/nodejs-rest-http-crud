@@ -22,3 +22,21 @@ You can then start the application like this:
 
 
 Then go to http://localhost:3000
+
+
+#### Running on Minishift
+
+First, make sure you have minishift setup and are logged in using `oc login`.
+
+Then create a new project using the `oc` commands
+
+`oc new-project fun-node-fun`
+
+For this example, you will also need a postgres db running on your Minishift cluster.
+
+`oc new-app -e POSTGRESQL_USER=luke -ePOSTGRESQL_PASSWORD=secret -ePOSTGRESQL_DATABASE=my_data openshift/postgresql-92-centos7 --name=my-database`
+
+Then run `npm run openshift` to deploy your app
+
+Then you can navigate to the newly exposed route, something similar to "http://nodejs-rest-http-crud-boosters.192.168.99.100.nip.io/",  this will probably be different based on your Minishift IP address
+
