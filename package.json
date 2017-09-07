@@ -43,7 +43,7 @@
     "eslint-plugin-standard": "~3.0.1",
     "nodeshift": "^0.6.0",
     "nsp": "~2.7.0",
-    "nyc": "~11.1.0",
+    "nyc": "~11.2.1",
     "proxyquire": "^1.8.0",
     "standard-version": "^4.2.0",
     "supertest": "^3.0.0",
