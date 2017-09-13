@@ -87,7 +87,6 @@ objects:
       provider: nodeshift
   metadata:
     name: nodejs-rest-http-crud
-    namespace: test-crud
     labels:
       provider: nodeshift
       expose: 'true'
@@ -97,7 +96,6 @@ objects:
   kind: DeploymentConfig
   metadata:
     name: nodejs-rest-http-crud
-    namespace: test-crud
     labels:
       provider: nodeshift
       project: nodejs-rest-http-crud
@@ -182,7 +180,6 @@ objects:
   kind: Secret
   metadata:
     name: my-database-secret
-    namespace: test-crud
     labels:
       provider: nodeshift
       app: nodejs-rest-http-crud
