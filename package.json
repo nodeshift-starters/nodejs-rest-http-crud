@@ -54,7 +54,7 @@
   "dependencies": {
     "body-parser": "~1.18.0",
     "debug": "~3.0.0",
-    "express": "^4.15.3",
+    "express": "^4.15.5",
     "kube-probe": "^0.1.0",
     "pg": "^7.1.2"
   },
