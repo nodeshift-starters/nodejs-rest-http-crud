@@ -97,6 +97,7 @@ objects:
   metadata:
     name: nodejs-rest-http-crud
     labels:
+      app: nodejs-rest-http-crud
       provider: nodeshift
       project: nodejs-rest-http-crud
       version: 1.0.0
@@ -145,11 +146,13 @@ objects:
                 protocol: TCP
       metadata:
         labels:
+          app: nodejs-rest-http-crud
           project: nodejs-rest-http-crud
           provider: nodeshift
           version: 1.0.0
     replicas: 1
     selector:
+      app: nodejs-rest-http-crud
       project: nodejs-rest-http-crud
       provider: nodeshift
     triggers:
