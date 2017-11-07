@@ -42,7 +42,7 @@
     "eslint-plugin-react": "~7.4.0",
     "eslint-plugin-standard": "~3.0.1",
     "nodeshift": "^0.13.0",
-    "nsp": "~2.8.0",
+    "nsp": "~3.1.0",
     "nyc": "~11.3.0",
     "proxyquire": "^1.8.0",
     "standard-version": "^4.2.0",
