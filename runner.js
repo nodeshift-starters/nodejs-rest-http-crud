@@ -1,13 +1,11 @@
 const nodeshift = require('nodeshift');
 
 const options = {
-  osc: {
-    strictSSL: false
-  }
+  strictSSL: false
 };
 
-nodeshift.deployApplication(options).then((message) => {
+nodeshift.deploy(options).then((message) => {
   console.log('Application Depoyed');
 }).catch((err) => {
   console.error('Error', err);
-})
+});
