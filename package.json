@@ -55,7 +55,7 @@
     "body-parser": "~1.18.0",
     "debug": "^3.1.0",
     "express": "^4.16.0",
-    "kube-probe": "^0.1.0",
+    "kube-probe": "^0.2.0",
     "pg": "^7.1.2"
   },
   "version": "1.0.3"
