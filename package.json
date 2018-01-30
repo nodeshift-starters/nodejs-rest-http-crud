@@ -13,6 +13,7 @@
     "dependencyCheck": "szero . --ci",
     "release": "standard-version",
     "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x",
+    "postinstall": "license-reporter report && license-reporter save --xml licenses.xml",
     "start": "PORT=8080 node ./bin/www"
   },
   "files": [
@@ -21,7 +22,8 @@
     "public",
     "bin",
     "lib",
-    "LICENSE"
+    "LICENSE",
+    "licenses"
   ],
   "repository": {
     "type": "git",
