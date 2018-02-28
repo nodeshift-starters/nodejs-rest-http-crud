@@ -145,7 +145,7 @@ test('test POST fruit', (t) => {
     create: (name, stock) => {
       t.equal(name, fruitData.name, `respone.body.name should be ${fruitData.name}`);
       t.equal(stock, fruitData.stock, `respone.body.stock should be ${fruitData.stock}`);
-      return Promise.resolve();
+      return Promise.resolve({rows: []});
     }
   };
 
