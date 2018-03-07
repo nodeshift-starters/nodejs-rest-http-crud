@@ -1,5 +1,6 @@
 {
   "name": "nodejs-rest-http-crud",
+  "version": "1.2.0",
   "description": "",
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
@@ -19,8 +20,8 @@
   },
   "standard-version": {
     "scripts": {
-      "postbump": "node release.js",
-      "precommit": "git add .openshiftio/application.yaml"
+      "postbump": "npm run postinstall && node release.js",
+      "precommit": "git add .openshiftio/application.yaml licenses/"
     }
   },
   "files": [
@@ -68,6 +69,5 @@
     "kube-probe": "^0.3.1",
     "license-reporter": "^1.1.3",
     "pg": "^7.1.2"
-  },
-  "version": "1.2.0"
+  }
 }
