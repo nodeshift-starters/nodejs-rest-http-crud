@@ -54,7 +54,7 @@
     "js-yaml": "^3.10.0",
     "nodeshift": "^1.4.1",
     "nsp": "~3.2.1",
-    "nyc": "~11.4.1",
+    "nyc": "~11.6.0",
     "proxyquire": "^2.0.0",
     "standard-version": "^4.3.0",
     "supertest": "^3.0.0",
