@@ -29,7 +29,7 @@ const db = require('./lib/db');
 
 const fruits = require('./lib/routes/fruits');
 
-app.use(bodyParser.json());
+app.use(bodyParser.text({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 // expose the license.html at http[s]://[host]:[port]/licences/licenses.html

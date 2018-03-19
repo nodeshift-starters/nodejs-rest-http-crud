@@ -81,7 +81,7 @@
       //In case of edit fruits, populate form with fruit data
       $scope.edit = function (fruit) {
         $scope.form.name = fruit.name;
-        $scope.form.stock = fruit.stock;
+        $scope.form.stock = parseInt(fruit.stock);
         $scope.form.id = fruit.id;
       };
 
@@ -104,7 +104,7 @@
       }
 
       function _error(response) {
-        alert(response.data.error || response.statusText);
+        alert(response.data || response.statusText);
       }
 
       //Clear the form
@@ -131,7 +131,7 @@
   <form ng-submit="update()">
     <div class="row">
       <div class="col-6"><input type="text" placeholder="Name" ng-model="form.name" size="60"/></div>
-      <div class="col-6"><input type="number" placeholder="Stock" ng-model="form.stock" size="60"/></div>
+      <div class="col-6"><input type="number" placeholder="Stock" ng-model="form.stock" size="60" min="0"/></div>
     </div>
     <input type="submit" value="Save"/>
   </form>
