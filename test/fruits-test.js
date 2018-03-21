@@ -273,8 +273,8 @@ test('test POST fruit - error - invalid payload', (t) => {
 
   supertest(app)
     .post('/api/fruits')
-    .set('Content-Type','application/json')
-    .send("Some text")
+    .set('Content-Type', 'application/json')
+    .send('Some text')
     .expect(415)
     .then(response => {
       t.equal(response.text, 'Invalid payload!', 'Payload must be in JSON format');
@@ -286,10 +286,10 @@ test('test POST fruit - error - xml payload', (t) => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
-  const xmlFruitData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><fruit><name>Banana</name><stock>10</stock></fruit>"
+  const xmlFruitData = '<?xml version="1.0" encoding="UTF-8"?><fruit><name>Banana</name><stock>10</stock></fruit>';
   supertest(app)
     .post('/api/fruits')
-    .set('Content-Type','application/xml')
+    .set('Content-Type', 'application/xml')
     .send(xmlFruitData)
     .expect(415)
     .then(response => {
@@ -298,15 +298,14 @@ test('test POST fruit - error - xml payload', (t) => {
     });
 });
 
-
 test('test POST fruit - error - JSON Content-Type and XML body', (t) => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
-  const xmlFruitData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><fruit><name>adam</name><stock>10</stock></fruit>"
+  const xmlFruitData = '<?xml version="1.0" encoding="UTF-8"?><fruit><name>adam</name><stock>10</stock></fruit>';
   supertest(app)
     .post('/api/fruits')
-    .set('Content-Type','application/json')
+    .set('Content-Type', 'application/json')
     .send(xmlFruitData)
     .expect(415)
     .then(response => {
@@ -537,10 +536,10 @@ test('test PUT fruit - error - xml payload', (t) => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
-  const xmlFruitData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><fruit><name>Banana</name><stock>10</stock></fruit>"
+  const xmlFruitData = '<?xml version="1.0" encoding="UTF-8"?><fruit><name>Banana</name><stock>10</stock></fruit>';
   supertest(app)
     .put('/api/fruits/10')
-    .set('Content-Type','application/xml')
+    .set('Content-Type', 'application/xml')
     .send(xmlFruitData)
     .expect(415)
     .then(response => {
@@ -553,10 +552,10 @@ test('test PUT fruit - error - JSON Content-Type and XML body', (t) => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
-  const xmlFruitData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><fruit><name>adam</name><stock>10</stock></fruit>"
+  const xmlFruitData = '<?xml version="1.0" encoding="UTF-8"?><fruit><name>adam</name><stock>10</stock></fruit>';
   supertest(app)
     .put('/api/fruits/10')
-    .set('Content-Type','application/json')
+    .set('Content-Type', 'application/json')
     .send(xmlFruitData)
     .expect(415)
     .then(response => {
