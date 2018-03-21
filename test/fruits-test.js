@@ -273,10 +273,84 @@ test('test POST fruit - error - invalid payload', (t) => {
 
   supertest(app)
     .post('/api/fruits')
-    .send('Some text')
+    .set('Content-Type','application/json')
+    .send("Some text")
     .expect(415)
     .then(response => {
       t.equal(response.text, 'Invalid payload!', 'Payload must be in JSON format');
+      t.end();
+    });
+});
+
+test('test POST fruit - error - xml payload', (t) => {
+  const app = proxyquire('../app', {
+    './lib/db': mockDb
+  });
+  const xmlFruitData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><fruit><name>Banana</name><stock>10</stock></fruit>"
+  supertest(app)
+    .post('/api/fruits')
+    .set('Content-Type','application/xml')
+    .send(xmlFruitData)
+    .expect(415)
+    .then(response => {
+      t.equal(response.text, 'Invalid payload!', 'Payload must be in JSON format');
+      t.end();
+    });
+});
+
+
+test('test POST fruit - error - JSON Content-Type and XML body', (t) => {
+  const app = proxyquire('../app', {
+    './lib/db': mockDb
+  });
+  const xmlFruitData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><fruit><name>adam</name><stock>10</stock></fruit>"
+  supertest(app)
+    .post('/api/fruits')
+    .set('Content-Type','application/json')
+    .send(xmlFruitData)
+    .expect(415)
+    .then(response => {
+      t.equal(response.text, 'Invalid payload!', 'Payload must be in JSON format');
+      t.end();
+    });
+});
+
+test('test POST fruit - error - negative number of stock', (t) => {
+  const fruitData = {
+    name: 'Banana',
+    stock: -10
+  };
+
+  const app = proxyquire('../app', {
+    './lib/db': mockDb
+  });
+
+  supertest(app)
+    .post('/api/fruits')
+    .send(fruitData)
+    .expect(422)
+    .then(response => {
+      t.equal(response.text, 'The stock must be greater or equal to 0!', 'has a need stock message');
+      t.end();
+    });
+});
+
+test('test POST fruit - error - no numeric stock', (t) => {
+  const fruitData = {
+    name: 'Banana',
+    stock: 'two'
+  };
+
+  const app = proxyquire('../app', {
+    './lib/db': mockDb
+  });
+
+  supertest(app)
+    .post('/api/fruits')
+    .send(fruitData)
+    .expect(422)
+    .then(response => {
+      t.equal(response.text, 'The stock must be greater or equal to 0!', 'has a need stock message');
       t.end();
     });
 });
@@ -455,6 +529,58 @@ test('test PUT fruit - error - invalid payload', (t) => {
     .expect(415)
     .then(response => {
       t.equal(response.text, 'Invalid payload!', 'Payload must be in JSON format');
+      t.end();
+    });
+});
+
+test('test PUT fruit - error - xml payload', (t) => {
+  const app = proxyquire('../app', {
+    './lib/db': mockDb
+  });
+  const xmlFruitData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><fruit><name>Banana</name><stock>10</stock></fruit>"
+  supertest(app)
+    .put('/api/fruits/10')
+    .set('Content-Type','application/xml')
+    .send(xmlFruitData)
+    .expect(415)
+    .then(response => {
+      t.equal(response.text, 'Invalid payload!', 'Payload must be in JSON format');
+      t.end();
+    });
+});
+
+test('test PUT fruit - error - JSON Content-Type and XML body', (t) => {
+  const app = proxyquire('../app', {
+    './lib/db': mockDb
+  });
+  const xmlFruitData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><fruit><name>adam</name><stock>10</stock></fruit>"
+  supertest(app)
+    .put('/api/fruits/10')
+    .set('Content-Type','application/json')
+    .send(xmlFruitData)
+    .expect(415)
+    .then(response => {
+      t.equal(response.text, 'Invalid payload!', 'Payload must be in JSON format');
+      t.end();
+    });
+});
+
+test('test PUT fruit - error - no numeric stock', (t) => {
+  const fruitData = {
+    name: 'Banana',
+    stock: 'two'
+  };
+
+  const app = proxyquire('../app', {
+    './lib/db': mockDb
+  });
+
+  supertest(app)
+    .put('/api/fruits/10')
+    .send(fruitData)
+    .expect(422)
+    .then(response => {
+      t.equal(response.text, 'The stock must be greater or equal to 0!', 'has a need stock message');
       t.end();
     });
 });
