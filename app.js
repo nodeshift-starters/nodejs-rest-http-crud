@@ -31,8 +31,7 @@ const fruits = require('./lib/routes/fruits');
 
 app.use(bodyParser.json());
 app.use(function (error, req, res, next) {
-  console.log(error);
-  if (error instanceof SyntaxError && error.type === 'entity.parse.failed') {
+  if (req.body === '' || (error instanceof SyntaxError && error.type === 'entity.parse.failed')) {
     res.status(415);
     return res.send('Invalid payload!');
   } else {

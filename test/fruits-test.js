@@ -524,6 +524,7 @@ test('test PUT fruit - error - invalid payload', (t) => {
 
   supertest(app)
     .put('/api/fruits/20')
+    .set('Content-Type', 'application/json')
     .send('Some text')
     .expect(415)
     .then(response => {
