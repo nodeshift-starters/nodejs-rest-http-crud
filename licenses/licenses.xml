@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <licenseSummary>
     <project>nodejs-rest-http-crud</project>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <license>Apache-2.0</license>
     <dependencies>
         <dependency>
@@ -27,16 +27,6 @@
         <dependency>
             <packageName>kube-probe</packageName>
             <version>0.3.1</version>
-            <licenses>
-                <license>
-                    <name>Apache License 2.0</name>
-                    <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-                </license>
-            </licenses>
-        </dependency>
-        <dependency>
-            <packageName>license-reporter</packageName>
-            <version>1.2.0</version>
             <licenses>
                 <license>
                     <name>Apache License 2.0</name>
