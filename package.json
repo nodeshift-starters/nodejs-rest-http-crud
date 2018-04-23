@@ -18,8 +18,9 @@
     "release": "standard-version -a",
     "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
-    "start": "PORT=8080 node ./bin/www"
+    "start": "node ."
   },
+  "main": "./bin/www",
   "standard-version": {
     "scripts": {
       "postbump": "npm run postinstall && node release.js",
