@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/bucharest-gold/nodejs-rest-http-crud/compare/v1.2.2...v1.2.3) (2018-04-26)
+
+
+### Bug Fixes
+
+* use the main prop for the application entry point. ([4768897](https://github.com/bucharest-gold/nodejs-rest-http-crud/commit/4768897)), closes [bucharest-gold/centos7-s2i-nodejs#33](https://github.com/bucharest-gold/centos7-s2i-nodejs/issues/33) [#issuecomment-382587104](https://github.com/bucharest-gold/nodejs-rest-http-crud/issues/issuecomment-382587104) [#93](https://github.com/bucharest-gold/nodejs-rest-http-crud/issues/93)
+* **www:** debug should take the project name as a parameter ([fe3380e](https://github.com/bucharest-gold/nodejs-rest-http-crud/commit/fe3380e))
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/bucharest-gold/nodejs-rest-http-crud/compare/v1.2.1...v1.2.2) (2018-04-16)
 
