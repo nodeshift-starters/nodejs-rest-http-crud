@@ -10,7 +10,7 @@ const mockDb = {
   }
 };
 
-test('test GET all fruits', (t) => {
+test('test GET all fruits', t => {
   const mockApi = {
     findAll: () => Promise.resolve({rows: [{id: 1}]})
   };
@@ -36,7 +36,7 @@ test('test GET all fruits', (t) => {
     });
 });
 
-test('test GET all fruits - error', (t) => {
+test('test GET all fruits - error', t => {
   const mockApi = {
     findAll: () => Promise.reject(new Error('error'))
   };
@@ -54,16 +54,16 @@ test('test GET all fruits - error', (t) => {
   supertest(app)
     .get('/api/fruits')
     .expect(400)
-    .then(response => {
+    .then(() => {
       t.end();
     });
 });
 
-test('test GET fruit', (t) => {
+test('test GET fruit', t => {
   const mockApi = {
-    find: (id) => {
+    find: id => {
       t.equal(id, '1', 'id should be 1 from the request params');
-      return Promise.resolve({rows: [{id: id}]});
+      return Promise.resolve({rows: [{id}]});
     }
   };
 
@@ -88,7 +88,7 @@ test('test GET fruit', (t) => {
     });
 });
 
-test('test GET fruit - return 404', (t) => {
+test('test GET fruit - return 404', t => {
   const mockApi = {
     find: () => Promise.resolve({rowCount: 0})
   };
@@ -112,7 +112,7 @@ test('test GET fruit - return 404', (t) => {
     });
 });
 
-test('test GET fruit - error', (t) => {
+test('test GET fruit - error', t => {
   const mockApi = {
     find: () => Promise.reject(new Error('error'))
   };
@@ -130,12 +130,12 @@ test('test GET fruit - error', (t) => {
   supertest(app)
     .get('/api/fruits/1')
     .expect(400)
-    .then(response => {
+    .then(() => {
       t.end();
     });
 });
 
-test('test POST fruit', (t) => {
+test('test POST fruit', t => {
   const fruitData = {
     name: 'Banana',
     stock: 10
@@ -163,12 +163,12 @@ test('test POST fruit', (t) => {
     .post('/api/fruits')
     .send(fruitData)
     .expect(201)
-    .then(response => {
+    .then(() => {
       t.end();
     });
 });
 
-test('test POST fruit - error - no name', (t) => {
+test('test POST fruit - error - no name', t => {
   const fruitData = {
     stock: 10
   };
@@ -187,7 +187,7 @@ test('test POST fruit - error - no name', (t) => {
     });
 });
 
-test('test POST fruit - error - no stock', (t) => {
+test('test POST fruit - error - no stock', t => {
   const fruitData = {
     name: 'Banana'
   };
@@ -206,7 +206,7 @@ test('test POST fruit - error - no stock', (t) => {
     });
 });
 
-test('test POST fruit - error - id error', (t) => {
+test('test POST fruit - error - id error', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -221,14 +221,14 @@ test('test POST fruit - error - id error', (t) => {
     });
 });
 
-test('test POST fruit - error', (t) => {
+test('test POST fruit - error', t => {
   const fruitData = {
     name: 'Banana',
     stock: 10
   };
 
   const mockApi = {
-    create: (name, stock) => {
+    create: () => {
       return Promise.reject(new Error('error'));
     }
   };
@@ -247,12 +247,12 @@ test('test POST fruit - error', (t) => {
     .post('/api/fruits')
     .send(fruitData)
     .expect(400)
-    .then(response => {
+    .then(() => {
       t.end();
     });
 });
 
-test('test POST fruit - error - no payload', (t) => {
+test('test POST fruit - error - no payload', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -266,7 +266,7 @@ test('test POST fruit - error - no payload', (t) => {
     });
 });
 
-test('test POST fruit - error - invalid payload', (t) => {
+test('test POST fruit - error - invalid payload', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -282,7 +282,7 @@ test('test POST fruit - error - invalid payload', (t) => {
     });
 });
 
-test('test POST fruit - error - xml payload', (t) => {
+test('test POST fruit - error - xml payload', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -298,7 +298,7 @@ test('test POST fruit - error - xml payload', (t) => {
     });
 });
 
-test('test POST fruit - error - JSON Content-Type and XML body', (t) => {
+test('test POST fruit - error - JSON Content-Type and XML body', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -314,7 +314,7 @@ test('test POST fruit - error - JSON Content-Type and XML body', (t) => {
     });
 });
 
-test('test POST fruit - error - negative number of stock', (t) => {
+test('test POST fruit - error - negative number of stock', t => {
   const fruitData = {
     name: 'Banana',
     stock: -10
@@ -334,7 +334,7 @@ test('test POST fruit - error - negative number of stock', (t) => {
     });
 });
 
-test('test POST fruit - error - no numeric stock', (t) => {
+test('test POST fruit - error - no numeric stock', t => {
   const fruitData = {
     name: 'Banana',
     stock: 'two'
@@ -354,7 +354,7 @@ test('test POST fruit - error - no numeric stock', (t) => {
     });
 });
 
-test('test PUT fruit', (t) => {
+test('test PUT fruit', t => {
   const fruitData = {
     name: 'Banana',
     stock: 10,
@@ -362,7 +362,7 @@ test('test PUT fruit', (t) => {
   };
 
   const mockApi = {
-    update: (options) => {
+    update: options => {
       t.equal(options.name, fruitData.name, `respone.body.name should be ${fruitData.name}`);
       t.equal(options.stock, fruitData.stock, `respone.body.stock should be ${fruitData.stock}`);
       t.equal(options.id, fruitData.id, `respone.body.id should be ${fruitData.stock}`);
@@ -384,12 +384,12 @@ test('test PUT fruit', (t) => {
     .put('/api/fruits/20')
     .send(fruitData)
     .expect(204)
-    .then(response => {
+    .then(() => {
       t.end();
     });
 });
 
-test('test PUT fruit - error - no name', (t) => {
+test('test PUT fruit - error - no name', t => {
   const fruitData = {
     stock: 10
   };
@@ -408,7 +408,7 @@ test('test PUT fruit - error - no name', (t) => {
     });
 });
 
-test('test PUT fruit - error - no stock', (t) => {
+test('test PUT fruit - error - no stock', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -423,7 +423,7 @@ test('test PUT fruit - error - no stock', (t) => {
     });
 });
 
-test('test PUT fruit - error - id error', (t) => {
+test('test PUT fruit - error - id error', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -438,7 +438,7 @@ test('test PUT fruit - error - id error', (t) => {
     });
 });
 
-test('test PUT fruit - not found', (t) => {
+test('test PUT fruit - not found', t => {
   const fruitData = {
     name: 'Banana',
     stock: 10,
@@ -446,7 +446,7 @@ test('test PUT fruit - not found', (t) => {
   };
 
   const mockApi = {
-    update: (options) => {
+    update: () => {
       return Promise.resolve({rowCount: 0});
     }
   };
@@ -471,7 +471,7 @@ test('test PUT fruit - not found', (t) => {
     });
 });
 
-test('test PUT fruit - error', (t) => {
+test('test PUT fruit - error', t => {
   const fruitData = {
     name: 'Banana',
     stock: 10,
@@ -479,7 +479,7 @@ test('test PUT fruit - error', (t) => {
   };
 
   const mockApi = {
-    update: (name, stock) => {
+    update: () => {
       return Promise.reject(new Error('error'));
     }
   };
@@ -498,12 +498,12 @@ test('test PUT fruit - error', (t) => {
     .put('/api/fruits/22')
     .send(fruitData)
     .expect(400)
-    .then(response => {
+    .then(() => {
       t.end();
     });
 });
 
-test('test PUT fruit - error - no payload', (t) => {
+test('test PUT fruit - error - no payload', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -517,7 +517,7 @@ test('test PUT fruit - error - no payload', (t) => {
     });
 });
 
-test('test PUT fruit - error - invalid payload', (t) => {
+test('test PUT fruit - error - invalid payload', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -533,7 +533,7 @@ test('test PUT fruit - error - invalid payload', (t) => {
     });
 });
 
-test('test PUT fruit - error - xml payload', (t) => {
+test('test PUT fruit - error - xml payload', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -549,7 +549,7 @@ test('test PUT fruit - error - xml payload', (t) => {
     });
 });
 
-test('test PUT fruit - error - JSON Content-Type and XML body', (t) => {
+test('test PUT fruit - error - JSON Content-Type and XML body', t => {
   const app = proxyquire('../app', {
     './lib/db': mockDb
   });
@@ -565,7 +565,7 @@ test('test PUT fruit - error - JSON Content-Type and XML body', (t) => {
     });
 });
 
-test('test PUT fruit - error - no numeric stock', (t) => {
+test('test PUT fruit - error - no numeric stock', t => {
   const fruitData = {
     name: 'Banana',
     stock: 'two'
@@ -585,9 +585,9 @@ test('test PUT fruit - error - no numeric stock', (t) => {
     });
 });
 
-test('test DELETE fruit', (t) => {
+test('test DELETE fruit', t => {
   const mockApi = {
-    remove: (id) => {
+    remove: id => {
       t.equal(id, '1', 'id should be 1 from the request params');
       return Promise.resolve({rowCount: 1});
     }
@@ -606,14 +606,14 @@ test('test DELETE fruit', (t) => {
   supertest(app)
     .delete('/api/fruits/1')
     .expect(204)
-    .then(response => {
+    .then(() => {
       t.end();
     });
 });
 
-test('test DELETE fruit - error - not found', (t) => {
+test('test DELETE fruit - error - not found', t => {
   const mockApi = {
-    remove: (id) => {
+    remove: () => {
       return Promise.resolve({rowCount: 0});
     }
   };
@@ -637,9 +637,9 @@ test('test DELETE fruit - error - not found', (t) => {
     });
 });
 
-test('test DELETE fruit - error', (t) => {
+test('test DELETE fruit - error', t => {
   const mockApi = {
-    remove: (id) => {
+    remove: () => {
       return Promise.reject(new Error('error'));
     }
   };
@@ -657,7 +657,7 @@ test('test DELETE fruit - error', (t) => {
   supertest(app)
     .delete('/api/fruits/1')
     .expect(400)
-    .then(response => {
+    .then(() => {
       t.end();
     });
 });

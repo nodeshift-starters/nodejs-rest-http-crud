@@ -13,7 +13,7 @@ const fruits = proxyquire('../lib/api/fruits', {
   '../db': mockDb
 });
 
-test('test api methods', (t) => {
+test('test api methods', t => {
   t.equal(typeof fruits.find, 'function', 'find method should be a function');
   t.equal(typeof fruits.findAll, 'function', 'findAll method should be a function');
   t.equal(typeof fruits.create, 'function', 'create method should be a function');
@@ -23,31 +23,31 @@ test('test api methods', (t) => {
   t.end();
 });
 
-test('test find all', (t) => {
+test('test find all', t => {
   const result = fruits.findAll();
   t.equal(result instanceof Promise, true, 'should return a promise');
   t.end();
 });
 
-test('test find', (t) => {
+test('test find', t => {
   const result = fruits.find('id');
   t.equal(result instanceof Promise, true, 'should return a promise');
   t.end();
 });
 
-test('test create', (t) => {
+test('test create', t => {
   const result = fruits.create('name', 'stock');
   t.equal(result instanceof Promise, true, 'should return a promise');
   t.end();
 });
 
-test('test update', (t) => {
+test('test update', t => {
   const result = fruits.update({name: 'name', stock: 'stock', id: 1});
   t.equal(result instanceof Promise, true, 'should return a promise');
   t.end();
 });
 
-test('test remove', (t) => {
+test('test remove', t => {
   const result = fruits.remove('id');
   t.equal(result instanceof Promise, true, 'should return a promise');
   t.end();

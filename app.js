@@ -18,8 +18,8 @@
  *
  */
 
-const express = require('express');
 const path = require('path');
+const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -30,17 +30,16 @@ const db = require('./lib/db');
 const fruits = require('./lib/routes/fruits');
 
 app.use(bodyParser.json());
-app.use(function (error, req, res, next) {
+app.use((error, req, res, next) => {
   if (req.body === '' || (error instanceof SyntaxError && error.type === 'entity.parse.failed')) {
     res.status(415);
     return res.send('Invalid payload!');
-  } else {
-    next();
   }
+  next();
 });
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
-// expose the license.html at http[s]://[host]:[port]/licences/licenses.html
+// Expose the license.html at http[s]://[host]:[port]/licences/licenses.html
 app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
 
 app.use('/api', fruits);
@@ -48,9 +47,9 @@ app.use('/api', fruits);
 // Add a health check
 probe(app);
 
-db.init().then((result) => {
+db.init().then(() => {
   console.log('Database init\'d');
-}).catch((err) => {
+}).catch(err => {
   console.log(err);
 });
 
