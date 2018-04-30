@@ -8,7 +8,7 @@ const rhoaster = require('rhoaster');
 
 const testEnvironment = rhoaster({
   deploymentName: 'nodejs-rest-http-crud',
-  nodeVersion: '8.x'
+  nodeVersion: '10.x'
 });
 
 testEnvironment.deploy()
