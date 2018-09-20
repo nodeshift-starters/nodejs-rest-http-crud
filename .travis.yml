@@ -10,21 +10,8 @@ before_install:
 install: npm install
 before_script:
   - greenkeeper-lockfile-update
-  - sudo mount --make-shared /
-  - sudo service docker stop
-  - sudo sed -i 's/DOCKER_OPTS=\"/DOCKER_OPTS=\"--insecure-registry 172.30.0.0\/16 /' /etc/default/docker
-  - sudo service docker start
-  - wget https://github.com/openshift/origin/releases/download/v3.9.0-alpha.3/openshift-origin-client-tools-v3.9.0-alpha.3-78ddc10-linux-64bit.tar.gz
-  - tar xvzOf openshift-origin-client-tools-v3.9.0-alpha.3-78ddc10-linux-64bit.tar.gz > oc.bin
-  - sudo mv oc.bin /usr/bin/oc
-  - sudo chmod 755 /usr/bin/oc
 script:
    - npm run ci
-   - oc cluster up
-   - sleep 10
-   - oc new-app -e POSTGRESQL_USER=luke -ePOSTGRESQL_PASSWORD=secret -ePOSTGRESQL_DATABASE=my_data openshift/postgresql-92-centos7 --name=my-database
-   - sleep 10
-   - npm run test:integration
 # Only the node version 8 job will upload the lockfile
 after_script: greenkeeper-lockfile-upload
 branches:
