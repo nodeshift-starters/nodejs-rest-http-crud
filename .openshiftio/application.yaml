@@ -91,7 +91,7 @@ objects:
         provider: nodeshift
         expose: 'true'
         project: nodejs-rest-http-crud
-        version: 2.0.0
+        version: 2.0.1
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
@@ -100,7 +100,7 @@ objects:
         app: nodejs-rest-http-crud
         provider: nodeshift
         project: nodejs-rest-http-crud
-        version: 2.0.0
+        version: 2.0.1
     spec:
       template:
         spec:
@@ -149,7 +149,7 @@ objects:
             app: nodejs-rest-http-crud
             project: nodejs-rest-http-crud
             provider: nodeshift
-            version: 2.0.0
+            version: 2.0.1
       replicas: 1
       selector:
         app: nodejs-rest-http-crud
@@ -178,7 +178,7 @@ objects:
       labels:
         provider: nodeshift
         project: nodejs-rest-http-crud
-        version: 2.0.0
+        version: 2.0.1
   - apiVersion: v1
     kind: Secret
     metadata:
@@ -186,7 +186,7 @@ objects:
       labels:
         provider: nodeshift
         app: nodejs-rest-http-crud
-        version: 2.0.0
+        version: 2.0.1
     stringData:
       user: luke
       password: secret
