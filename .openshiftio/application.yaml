@@ -23,12 +23,11 @@ parameters:
   - name: RELEASE_VERSION
     description: The location within the source repo of the application
     displayName: release version
-    required: true
+    value: 2.0.1
   - name: SUFFIX_NAME
     description: The location within the source repo of the application
     displayName: suffix name
-    value: .
-    required: true
+    value: ''
   - name: GITHUB_WEBHOOK_SECRET
     description: A secret string used to configure the GitHub webhook.
     displayName: GitHub Webhook Secret
@@ -100,7 +99,7 @@ objects:
         provider: nodeshift
         expose: 'true'
         project: nodejs-rest-http-crud
-        version: 2.0.1
+        version: ${RELEASE_VERSION}
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
@@ -109,7 +108,7 @@ objects:
         app: nodejs-rest-http-crud
         provider: nodeshift
         project: nodejs-rest-http-crud
-        version: 2.0.1
+        version: ${RELEASE_VERSION}
     spec:
       template:
         spec:
@@ -158,7 +157,7 @@ objects:
             app: nodejs-rest-http-crud
             project: nodejs-rest-http-crud
             provider: nodeshift
-            version: 2.0.1
+            version: ${RELEASE_VERSION}
       replicas: 1
       selector:
         app: nodejs-rest-http-crud
@@ -187,7 +186,7 @@ objects:
       labels:
         provider: nodeshift
         project: nodejs-rest-http-crud
-        version: 2.0.1
+        version: ${RELEASE_VERSION}
   - apiVersion: v1
     kind: Secret
     metadata:
@@ -195,7 +194,7 @@ objects:
       labels:
         provider: nodeshift
         app: nodejs-rest-http-crud
-        version: 2.0.1
+        version: ${RELEASE_VERSION}
     stringData:
       user: luke
       password: secret
