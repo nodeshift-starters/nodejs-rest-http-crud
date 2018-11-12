@@ -32,17 +32,13 @@ const readFile = promisify(fs.readFile);
 
 async function updateApplicationYaml () {
   const applicationyaml = jsyaml.safeLoad(await readFile(`${__dirname}/.openshiftio/application.yaml`, {encoding: 'utf8'}));
-  // Loop through and update the metadata.label.version to the version from the package.json
-  applicationyaml.objects = applicationyaml.objects.map(object => {
-    if (object.metadata && object.metadata.labels && object.metadata.labels.version) {
-      object.metadata.labels.version = packagejson.version;
+  // We just need to update the RELEASE_VERSION parameter
+  applicationyaml.parameters = applicationyaml.parameters.map(param => {
+    if (param.name === 'RELEASE_VERSION') {
+      param.value = packagejson.version;
     }
 
-    if (object.kind === 'DeploymentConfig') {
-      object.spec.template.metadata.labels.version = packagejson.version; // Probably should do a better check here
-    }
-
-    return object;
+    return param;
   });
 
   // Now write the file back out
