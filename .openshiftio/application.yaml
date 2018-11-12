@@ -23,7 +23,7 @@ parameters:
   - name: RELEASE_VERSION
     description: The location within the source repo of the application
     displayName: release version
-    value: 2.0.1
+    value: 2.1.0
   - name: SUFFIX_NAME
     description: The location within the source repo of the application
     displayName: suffix name
@@ -99,7 +99,7 @@ objects:
         provider: nodeshift
         expose: 'true'
         project: nodejs-rest-http-crud
-        version: ${RELEASE_VERSION}
+        version: '${RELEASE_VERSION}'
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
@@ -108,7 +108,7 @@ objects:
         app: nodejs-rest-http-crud
         provider: nodeshift
         project: nodejs-rest-http-crud
-        version: ${RELEASE_VERSION}
+        version: '${RELEASE_VERSION}'
     spec:
       template:
         spec:
@@ -144,7 +144,7 @@ objects:
                 periodSeconds: 3
                 successThreshold: 1
                 timeoutSeconds: 1
-              image: nodejs-rest-http-crud:${RELEASE_VERSION}
+              image: 'nodejs-rest-http-crud:${RELEASE_VERSION}'
               name: nodejs-rest-http-crud
               securityContext:
                 privileged: false
@@ -157,7 +157,7 @@ objects:
             app: nodejs-rest-http-crud
             project: nodejs-rest-http-crud
             provider: nodeshift
-            version: ${RELEASE_VERSION}
+            version: '${RELEASE_VERSION}'
       replicas: 1
       selector:
         app: nodejs-rest-http-crud
@@ -186,7 +186,7 @@ objects:
       labels:
         provider: nodeshift
         project: nodejs-rest-http-crud
-        version: ${RELEASE_VERSION}
+        version: '${RELEASE_VERSION}'
   - apiVersion: v1
     kind: Secret
     metadata:
@@ -194,7 +194,7 @@ objects:
       labels:
         provider: nodeshift
         app: nodejs-rest-http-crud
-        version: ${RELEASE_VERSION}
+        version: '${RELEASE_VERSION}'
     stringData:
       user: luke
       password: secret

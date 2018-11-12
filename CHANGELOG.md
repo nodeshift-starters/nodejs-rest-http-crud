@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v2.0.1...v2.1.0) (2018-11-12)
+
+
+### Features
+
+* Dynamic image tagging using release version ([#116](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/116)) ([2d16701](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/2d16701))
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v2.0.0...v2.0.1) (2018-11-08)
 
