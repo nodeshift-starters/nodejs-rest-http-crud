@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v1.3.0...v1.3.1) (2019-01-17)
+
+
+### Bug Fixes
+
+* Fix resource limit for db and app container ([#119](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/119)) ([dd7c093](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/dd7c093))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v1.2.4...v1.3.0) (2018-11-12)
 
