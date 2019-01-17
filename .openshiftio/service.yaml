@@ -61,7 +61,10 @@ items:
           ports:
           - containerPort: 5432
             protocol: TCP
-          resources: {}
+          resources: 
+            limits:
+              cpu: 400m
+              memory: 256Mi
           volumeMounts:
           - mountPath: /var/lib/pgsql/data
             name: my-database-volume-1
