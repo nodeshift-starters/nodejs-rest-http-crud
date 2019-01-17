@@ -23,7 +23,7 @@ parameters:
   - name: RELEASE_VERSION
     description: The location within the source repo of the application
     displayName: release version
-    value: 2.1.0
+    value: 2.1.1
   - name: SUFFIX_NAME
     description: The location within the source repo of the application
     displayName: suffix name
@@ -202,4 +202,3 @@ objects:
     stringData:
       user: luke
       password: secret
-      
