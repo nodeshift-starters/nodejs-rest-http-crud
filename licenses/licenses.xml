@@ -6,7 +6,7 @@
     <dependencies>
         <dependency>
             <packageName>express</packageName>
-            <version>4.16.0</version>
+            <version>4.16.4</version>
             <licenses>
                 <license>
                     <name>MIT License</name>
