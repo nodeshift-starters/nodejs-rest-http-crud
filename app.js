@@ -35,6 +35,7 @@ app.use((error, req, res, next) => {
     res.status(415);
     return res.send('Invalid payload!');
   }
+
   next();
 });
 app.use(bodyParser.urlencoded({extended: false}));
@@ -49,8 +50,8 @@ probe(app);
 
 db.init().then(() => {
   console.log('Database init\'d');
-}).catch(err => {
-  console.log(err);
+}).catch(error => {
+  console.log(error);
 });
 
 module.exports = app;
