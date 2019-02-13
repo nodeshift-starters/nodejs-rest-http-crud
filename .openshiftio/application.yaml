@@ -9,6 +9,7 @@ parameters:
   - name: SOURCE_REPOSITORY_URL
     description: The source URL for the application
     displayName: Source URL
+    value: https://github.com/nodeshift-starters/nodejs-rest-http-crud
     required: true
   - name: SOURCE_REPOSITORY_REF
     description: The branch name for the application
