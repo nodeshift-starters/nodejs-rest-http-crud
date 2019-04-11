@@ -49,3 +49,24 @@ test('test liveness not ok', t => {
       t.end();
     });
 });
+
+test('SIGTERM', t => {
+  const mockDb = {
+    init: () => {
+      return Promise.resolve();
+    },
+    end: () => {
+      t.end();
+    }
+  };
+
+  process.on = (signal, cb) => {
+    if (signal === 'SIGTERM'){
+      cb();
+    }
+  }
+
+  const app = proxyquire('../app', {
+    './lib/db': mockDb
+  });
+});
