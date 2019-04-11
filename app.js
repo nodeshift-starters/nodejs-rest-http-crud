@@ -42,9 +42,9 @@ const livenessCallback = (req, res) => {
 };
 
 const probeOptions = {
-  livenessCallback: livenessCallback
+  livenessCallback
 };
-let swaggerDefinition = {
+const swaggerDefinition = {
   info: {
     // API informations
     title: 'Fruits',
@@ -55,9 +55,9 @@ let swaggerDefinition = {
 };
 
 // Options for the swagger docs
-let options = {
+const options = {
   // Import swaggerDefinitions
-  swaggerDefinition: swaggerDefinition,
+  swaggerDefinition,
   // Path to the API docs
   apis: ['./lib/routes/fruits.js']
 };
@@ -75,6 +75,7 @@ app.use((error, req, res, next) => {
     res.status(415);
     return res.send('Invalid payload!');
   }
+
   next();
 });
 app.use(bodyParser.urlencoded({extended: false}));
@@ -95,7 +96,7 @@ db.init()
     console.log(error);
   });
 
-process.on('SIGTERM', function() {
+process.on('SIGTERM', () => {
   console.info(
     'Got SIGTERM. Graceful shutdown start now',
     new Date().toISOString()
