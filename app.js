@@ -23,37 +23,39 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
+
 const app = express();
 const probe = require('kube-probe');
 const db = require('./lib/db');
 
 const livenessCallback = (req, res) => {
   db.query('select now()', err => {
-    if (!err) {
-      res.writeHead(200);
-      res.end('OK');
-    } else {
+    if (err) {
       console.log('liveness not ok');
       res.writeHead(500);
       res.end('not ok');
+    } else {
+      res.writeHead(200);
+      res.end('OK');
     }
   });
 };
+
 const probeOptions = {
   livenessCallback: livenessCallback
 };
-var swaggerDefinition = {
+let swaggerDefinition = {
   info: {
     // API informations
-    title: 'Fruits', 
-    version: '2.1.1', 
-    description: 'A sample RESTful API' 
+    title: 'Fruits',
+    version: '2.1.1',
+    description: 'A sample RESTful API'
   },
-  basePath: '/' 
+  basePath: '/'
 };
 
 // Options for the swagger docs
-var options = {
+let options = {
   // Import swaggerDefinitions
   swaggerDefinition: swaggerDefinition,
   // Path to the API docs
@@ -73,10 +75,9 @@ app.use((error, req, res, next) => {
     res.status(415);
     return res.send('Invalid payload!');
   }
-
   next();
 });
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 // Expose the license.html at http[s]://[host]:[port]/licences/licenses.html
 app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
@@ -94,7 +95,7 @@ db.init()
     console.log(error);
   });
 
-process.on('SIGTERM', function onSigterm() {
+process.on('SIGTERM', function() {
   console.info(
     'Got SIGTERM. Graceful shutdown start now',
     new Date().toISOString()
