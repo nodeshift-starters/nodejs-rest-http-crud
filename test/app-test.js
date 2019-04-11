@@ -75,8 +75,7 @@ test('test swagger ui', t => {
   const mockDb = {
     init: () => {
       return Promise.resolve();
-    },
-
+    }
   };
 
   const app = proxyquire('../app', {
