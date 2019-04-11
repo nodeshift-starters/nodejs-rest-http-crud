@@ -4,20 +4,18 @@ const test = require('tape');
 const supertest = require('supertest');
 const proxyquire = require('proxyquire');
 
-
-
 test('test liveness ok', t => {
   const mockDb = {
     init: () => {
       return Promise.resolve();
     },
     query: (query, cb) => {
-      cb(null, true)
+      cb(null, true);
     }
   };
 
   const app = proxyquire('../app', {
-    './lib/db': mockDb,
+    './lib/db': mockDb
   });
 
   supertest(app)
@@ -35,12 +33,12 @@ test('test liveness not ok', t => {
       return Promise.resolve();
     },
     query: (query, cb) => {
-      cb('error')
+      cb('error');
     }
   };
 
   const app = proxyquire('../app', {
-    './lib/db': mockDb,
+    './lib/db': mockDb
   });
 
   supertest(app)
