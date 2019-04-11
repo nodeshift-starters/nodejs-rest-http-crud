@@ -22,7 +22,7 @@ function runTests (route) {
       .get('/api/health/liveness')
       .expect(200)
       .then(response => {
-        t.equal(response.body,'OK','response.body is OK');
+        t.equal(response.body, 'OK', 'response.body is OK');
         t.end();
       });
   });
