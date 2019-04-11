@@ -27,7 +27,7 @@ const app = express();
 const probe = require('kube-probe');
 const db = require('./lib/db');
 
-let livenessCallback = (req, res) => {
+const livenessCallback = (req, res) => {
   db.query('select now()', err => {
     if (!err) {
       res.writeHead(200);
