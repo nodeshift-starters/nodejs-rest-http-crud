@@ -70,3 +70,24 @@ test('SIGTERM', t => {
     './lib/db': mockDb
   });
 });
+
+test('test swagger ui', t => {
+  const mockDb = {
+    init: () => {
+      return Promise.resolve();
+    },
+
+  };
+
+  const app = proxyquire('../app', {
+    './lib/db': mockDb
+  });
+
+  supertest(app)
+    .get('/api-docs/')
+    .expect('Content-Type', /text\/html/)
+    .expect(200)
+    .then(() => {
+      t.end();
+    });
+});
