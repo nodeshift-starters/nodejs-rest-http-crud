@@ -61,12 +61,12 @@ test('SIGTERM', t => {
   };
 
   process.on = (signal, cb) => {
-    if (signal === 'SIGTERM'){
+    if (signal === 'SIGTERM') {
       cb();
     }
-  }
+  };
 
-  const app = proxyquire('../app', {
+  proxyquire('../app', {
     './lib/db': mockDb
   });
 });
