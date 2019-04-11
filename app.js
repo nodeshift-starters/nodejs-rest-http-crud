@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
  *
@@ -18,40 +18,89 @@
  *
  */
 
-const path = require('path');
-const express = require('express');
-const bodyParser = require('body-parser');
-
+const path = require("path");
+const express = require("express");
+const bodyParser = require("body-parser");
+const swaggerUi = require("swagger-ui-express");
+const swaggerJSDoc = require("swagger-jsdoc");
 const app = express();
+const probe = require("kube-probe");
+const db = require("./lib/db");
 
-const probe = require('kube-probe');
-const db = require('./lib/db');
+let livenessCallback = (req, res) => {
+  db.query("select now()", err => {
+    if (!err) {
+      res.writeHead(200);
+      res.end("OK");
+    } else {
+      console.log("liveness not ok");
+      res.writeHead(500);
+      res.end("not ok");
+    }
+  });
+};
+const probeOptions = {
+  livenessCallback: livenessCallback
+};
+var swaggerDefinition = {
+  info: {
+    // API informations
+    title: "Fruits", 
+    version: "2.1.1", 
+    description: "A sample RESTful API" 
+  },
+  basePath: "/" 
+};
 
-const fruits = require('./lib/routes/fruits');
+// Options for the swagger docs
+var options = {
+  // Import swaggerDefinitions
+  swaggerDefinition: swaggerDefinition,
+  // Path to the API docs
+  apis: ["./lib/routes/fruits.js"]
+};
+const swaggerSpec = swaggerJSDoc(options);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+const fruits = require("./lib/routes/fruits");
 
 app.use(bodyParser.json());
 app.use((error, req, res, next) => {
-  if (req.body === '' || (error instanceof SyntaxError && error.type === 'entity.parse.failed')) {
+  if (
+    req.body === "" ||
+    (error instanceof SyntaxError && error.type === "entity.parse.failed")
+  ) {
     res.status(415);
-    return res.send('Invalid payload!');
+    return res.send("Invalid payload!");
   }
 
   next();
 });
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 // Expose the license.html at http[s]://[host]:[port]/licences/licenses.html
-app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
+app.use("/licenses", express.static(path.join(__dirname, "licenses")));
 
-app.use('/api', fruits);
+app.use("/api", fruits);
 
 // Add a health check
-probe(app);
 
-db.init().then(() => {
-  console.log('Database init\'d');
-}).catch(error => {
-  console.log(error);
+db.init()
+  .then(() => {
+    console.log("Database init'd, starting probe");
+    probe(app, probeOptions);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+process.on("SIGTERM", function onSigterm() {
+  console.info(
+    "Got SIGTERM. Graceful shutdown start now",
+    new Date().toISOString()
+  );
+  db.end();
+  console.info("DB Shutdown");
 });
 
 module.exports = app;
