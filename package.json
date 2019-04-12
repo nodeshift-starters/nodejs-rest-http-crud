@@ -54,7 +54,7 @@
   "devDependencies": {
     "coveralls": "^3.0.0",
     "js-yaml": "^3.10.0",
-    "nodeshift": "~2.1.1",
+    "nodeshift": "~3.0.0",
     "nyc": "~13.3.0",
     "proxyquire": "^2.0.0",
     "rhoaster": "~0.2.0",
