@@ -14,7 +14,7 @@
     "ci": "npm run lint && npm run coveralls",
     "dependencyCheck": "szero . --ci",
     "release": "standard-version -a",
-    "openshift": "nodeshift --strictSSL=false --nodeVersion=8.x",
+    "openshift": "nodeshift --strictSSL=false --imageTag=8.x",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
     "start": "node ."
   },
