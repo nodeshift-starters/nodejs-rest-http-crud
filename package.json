@@ -66,7 +66,7 @@
     "xo": "~0.24.0"
   },
   "dependencies": {
-    "body-parser": "~1.18.0",
+    "body-parser": "~1.19.0",
     "debug": "^4.0.1",
     "express": "4.16.4",
     "kube-probe": "^0.3.1",
