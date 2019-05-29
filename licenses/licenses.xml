@@ -1,19 +1,9 @@
 <?xml version='1.0'?>
 <licenseSummary>
     <project>nodejs-rest-http-crud</project>
-    <version>2.1.2</version>
+    <version>3.0.0</version>
     <license>Apache-2.0</license>
     <dependencies>
-        <dependency>
-            <packageName>express</packageName>
-            <version>4.16.4</version>
-            <licenses>
-                <license>
-                    <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
-                </license>
-            </licenses>
-        </dependency>
         <dependency>
             <packageName>kube-probe</packageName>
             <version>0.3.1</version>

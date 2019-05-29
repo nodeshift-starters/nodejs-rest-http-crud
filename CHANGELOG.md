@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [2.1.2](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v2.1.1...v2.1.2) (2019-04-15)
+# [3.0.0](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v2.1.2...v3.0.0) (2019-05-29)
+
+
+### Features
+
+*  Update to use Node.js 12.x ([a931332](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/a931332))
+
+
+### BREAKING CHANGES
+
+* start using node 12
 
 
 
