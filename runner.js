@@ -5,7 +5,7 @@ const options = {
 };
 
 nodeshift.deploy(options).then(() => {
-  console.log('Application Depoyed');
+  console.log('Application deployed.');
 }).catch(error => {
   console.error('Error', error);
 });
