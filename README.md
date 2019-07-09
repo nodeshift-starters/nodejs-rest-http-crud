@@ -12,7 +12,7 @@ First, install the dependencies
 
 A Postgres DB is needed, so if you are using Docker, then you can start a postgres db easily.
 
-`docker run --name os-postgres-db -e POSTGRESQL_USER=luke -e POSTGRESQL_PASSWORD=secret -e POSTGRESQL_DATABASE=my_data -d -p 5432:5432  openshift/postgresql-92-centos7`
+`docker run --name os-postgres-db -e POSTGRESQL_USER=luke -e POSTGRESQL_PASSWORD=secret -e POSTGRESQL_DATABASE=my_data -d -p 5432:5432  openshift/postgresql-10-centos7`
 
 In this example, the db user is `luke`, the password is `secret` and the database is `my_data`
 
@@ -34,7 +34,7 @@ Then create a new project using the `oc` commands
 
 For this example, you will also need a postgres db running on your Minishift cluster.
 
-`oc new-app -e POSTGRESQL_USER=luke -ePOSTGRESQL_PASSWORD=secret -ePOSTGRESQL_DATABASE=my_data openshift/postgresql-92-centos7 --name=my-database`
+`oc new-app -e POSTGRESQL_USER=luke -ePOSTGRESQL_PASSWORD=secret -ePOSTGRESQL_DATABASE=my_data centos/postgresql-10-centos7 --name=my-database`
 
 Then run `npm run openshift` to deploy your app
 
