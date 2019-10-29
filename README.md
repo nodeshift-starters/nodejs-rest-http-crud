@@ -40,3 +40,19 @@ Then run `npm run openshift` to deploy your app
 
 Then you can navigate to the newly exposed route, something similar to "http://nodejs-rest-http-crud-boosters.192.168.99.100.nip.io/",  this will probably be different based on your Minishift IP address
 
+
+This app has an example of integration test using an [integration test tool for Node.js apps on OpenShift](https://github.com/nodeshift/rhoaster)
+
+Once you started your local OpenShift instance you can check it out by  running the following commands: 
+
+```
+npm run test:integration 
+```
+
+It will deploy the app to local OpenShift and run the tests located on `test/integration` directory.
+
+```
+npm run test:integration:undeploy
+```
+
+Performs undeploy of the app inside local OpenShift.
