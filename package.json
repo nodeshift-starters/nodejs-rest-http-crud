@@ -56,7 +56,7 @@
     "nodeshift": "~4.0.0",
     "nyc": "~14.1.1",
     "proxyquire": "~2.1.3",
-    "rhoaster": "^0.4.0",
+    "rhoaster": "^0.4.1",
     "standard-version": "^6.0.1",
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
