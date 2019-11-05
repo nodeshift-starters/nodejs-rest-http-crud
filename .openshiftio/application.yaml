@@ -50,7 +50,7 @@ objects:
         - name: latest
           from:
             kind: DockerImage
-            name: 'ubi8/nodejs-10'
+            name: 'registry.access.redhat.com/ubi8/nodejs-10'
   - apiVersion: v1
     kind: BuildConfig
     metadata:
