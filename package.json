@@ -13,7 +13,7 @@
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "ci": "npm run lint && npm run coveralls",
     "release": "standard-version -a",
-    "openshift": "nodeshift --strictSSL=false --imageTag=10.x",
+    "openshift": "nodeshift",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
     "start": "node ."
   },
