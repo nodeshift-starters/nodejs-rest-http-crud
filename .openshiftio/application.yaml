@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   name: launchpad-builder
@@ -36,12 +36,12 @@ parameters:
     from: '[a-zA-Z0-9]{40}'
     generate: expression
 objects:
-  - apiVersion: v1
+  - apiVersion: image.openshift.io/v1
     kind: ImageStream
     metadata:
       name: nodejs-rest-http-crud
     spec: {}
-  - apiVersion: v1
+  - apiVersion: image.openshift.io/v1
     kind: ImageStream
     metadata:
       name: runtime
@@ -51,7 +51,7 @@ objects:
           from:
             kind: DockerImage
             name: 'registry.access.redhat.com/ubi8/nodejs-10'
-  - apiVersion: v1
+  - apiVersion: build.openshift.io/v1
     kind: BuildConfig
     metadata:
       name: nodejs-rest-http-crud
@@ -101,7 +101,7 @@ objects:
         expose: 'true'
         project: nodejs-rest-http-crud
         version: '${RELEASE_VERSION}'
-  - apiVersion: v1
+  - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     metadata:
       name: nodejs-rest-http-crud
@@ -178,7 +178,7 @@ objects:
             from:
               kind: ImageStreamTag
               name: 'nodejs-rest-http-crud:${RELEASE_VERSION}'
-  - apiVersion: v1
+  - apiVersion: route.openshift.io/v1
     kind: Route
     spec:
       to:
