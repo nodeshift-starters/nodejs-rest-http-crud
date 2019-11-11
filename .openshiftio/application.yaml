@@ -50,7 +50,7 @@ objects:
         - name: latest
           from:
             kind: DockerImage
-            name: 'nodeshift/centos7-s2i-nodejs:12.x'
+            name: 'registry.access.redhat.com/ubi8/nodejs-12'
   - apiVersion: build.openshift.io/v1
     kind: BuildConfig
     metadata:

@@ -8,7 +8,7 @@ const rhoaster = require('rhoaster');
 
 const testEnvironment = rhoaster({
   deploymentName: 'nodejs-rest-http-crud',
-  nodeVersion: '10.x'
+  dockerImage: 'registry.access.redhat.com/ubi8/nodejs-12'
 });
 
 testEnvironment.deploy()
