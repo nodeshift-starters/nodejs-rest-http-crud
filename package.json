@@ -7,7 +7,7 @@
   "scripts": {
     "test": "tape test/*.js | tap-spec",
     "test:integration": "tape test/integration/*.js | tap-spec",
-    "test:integration:undeploy": "nodeshift --strictSSL=false undeploy",
+    "test:integration:undeploy": "nodeshift undeploy",
     "lint": "xo",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
