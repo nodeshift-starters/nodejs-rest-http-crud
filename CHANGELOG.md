@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.4](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v2.1.3...v2.1.4) (2019-11-26)
+
+
+### Bug Fixes
+
+* issue with image address ([af7d1e0](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/af7d1e0b2077a81eb52a7fd3fcdc041ee582b50d))
+
 ### [2.1.3](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v2.1.2...v2.1.3) (2019-08-07)
 
 
