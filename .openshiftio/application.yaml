@@ -24,7 +24,7 @@ parameters:
   - name: RELEASE_VERSION
     description: The location within the source repo of the application
     displayName: release version
-    value: 3.0.1
+    value: 3.0.2
   - name: SUFFIX_NAME
     description: The location within the source repo of the application
     displayName: suffix name
@@ -50,7 +50,7 @@ objects:
         - name: latest
           from:
             kind: DockerImage
-            name: 'registry.access.redhat.com/ubi8/nodejs-12'
+            name: registry.access.redhat.com/ubi8/nodejs-12
   - apiVersion: build.openshift.io/v1
     kind: BuildConfig
     metadata:
