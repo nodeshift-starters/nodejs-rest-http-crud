@@ -104,7 +104,7 @@
       }
 
       function _error(response) {
-        alert(response.data || response.statusText);
+        alert(response.data ? JSON.stringify(response.data) : response.statusText)
       }
 
       //Clear the form
