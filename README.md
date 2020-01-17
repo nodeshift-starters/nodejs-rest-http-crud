@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/nodeshift-starters/nodejs-rest-http-crud.svg?branch=master)](https://travis-ci.org/nodeshift-starters/nodejs-rest-http-crud) [![Coverage Status](https://coveralls.io/repos/github/nodeshift-starters/nodejs-rest-http-crud/badge.svg?branch=master)](https://coveralls.io/github/nodeshift-starters/nodejs-rest-http-crud?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/nodeshift-starters/nodejs-rest-http-crud.svg)](https://greenkeeper.io/)
 
-Example CRUD Application
+# DEPRECATED - This is no longer supported please consider using 10.x instead
 
 ### Getting Started
 
