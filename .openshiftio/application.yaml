@@ -101,6 +101,7 @@ objects:
         expose: 'true'
         project: nodejs-rest-http-crud
         version: '${RELEASE_VERSION}'
+        'app.openshift.io/runtime': 'nodejs'
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     metadata:
@@ -110,6 +111,7 @@ objects:
         provider: nodeshift
         project: nodejs-rest-http-crud
         version: '${RELEASE_VERSION}'
+        'app.openshift.io/runtime': 'nodejs'
     spec:
       template:
         spec:
@@ -163,6 +165,7 @@ objects:
             project: nodejs-rest-http-crud
             provider: nodeshift
             version: '${RELEASE_VERSION}'
+            'app.openshift.io/runtime': 'nodejs'
       replicas: 1
       selector:
         app: nodejs-rest-http-crud
@@ -192,6 +195,7 @@ objects:
         provider: nodeshift
         project: nodejs-rest-http-crud
         version: '${RELEASE_VERSION}'
+        'app.openshift.io/runtime': 'nodejs'
   - apiVersion: v1
     kind: Secret
     metadata:
