@@ -24,7 +24,7 @@ parameters:
   - name: RELEASE_VERSION
     description: The location within the source repo of the application
     displayName: release version
-    value: 2.1.4
+    value: 2.1.5
   - name: SUFFIX_NAME
     description: The location within the source repo of the application
     displayName: suffix name
@@ -101,7 +101,7 @@ objects:
         expose: 'true'
         project: nodejs-rest-http-crud
         version: '${RELEASE_VERSION}'
-        'app.openshift.io/runtime': 'nodejs'
+        app.openshift.io/runtime: nodejs
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     metadata:
@@ -111,7 +111,7 @@ objects:
         provider: nodeshift
         project: nodejs-rest-http-crud
         version: '${RELEASE_VERSION}'
-        'app.openshift.io/runtime': 'nodejs'
+        app.openshift.io/runtime: nodejs
     spec:
       template:
         spec:
@@ -165,7 +165,7 @@ objects:
             project: nodejs-rest-http-crud
             provider: nodeshift
             version: '${RELEASE_VERSION}'
-            'app.openshift.io/runtime': 'nodejs'
+            app.openshift.io/runtime: nodejs
       replicas: 1
       selector:
         app: nodejs-rest-http-crud
@@ -195,7 +195,7 @@ objects:
         provider: nodeshift
         project: nodejs-rest-http-crud
         version: '${RELEASE_VERSION}'
-        'app.openshift.io/runtime': 'nodejs'
+        app.openshift.io/runtime: nodejs
   - apiVersion: v1
     kind: Secret
     metadata:
