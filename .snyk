@@ -1,0 +1,50 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - nodeshift > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - tap-spec > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - rhoaster > nodeshift > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - xo > eslint > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - standard-version > conventional-changelog > conventional-changelog-conventionalcommits > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - standard-version > conventional-recommended-bump > conventional-commits-parser > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - standard-version > conventional-changelog > conventional-changelog-core > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - xo > eslint > inquirer > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - xo > eslint > table > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - xo > eslint-plugin-ava > enhance-visitors > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - nodeshift > openshift-rest-client > kubernetes-client > openid-client > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - rhoaster > openshift-rest-client > kubernetes-client > openid-client > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - standard-version > conventional-changelog > conventional-changelog-core > conventional-changelog-writer > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - standard-version > conventional-changelog > conventional-changelog-core > conventional-commits-parser > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - nodeshift > openshift-rest-client > kubernetes-client > openid-client > node-jose > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - rhoaster > openshift-rest-client > kubernetes-client > openid-client > node-jose > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - rhoaster > nodeshift > openshift-rest-client > kubernetes-client > openid-client > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - rhoaster > nodeshift > openshift-rest-client > kubernetes-client > openid-client > node-jose > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash:
+        patched: '2020-05-01T03:03:27.785Z'
