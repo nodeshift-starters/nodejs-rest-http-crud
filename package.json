@@ -15,7 +15,9 @@
     "release": "standard-version -a",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
-    "start": "node ."
+    "start": "node .",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "main": "./bin/www",
   "standard-version": {
@@ -69,6 +71,8 @@
     "express": "~4.17.1",
     "kube-probe": "~0.4.0",
     "license-reporter": "~1.2.2",
-    "pg": "^7.8.2"
-  }
+    "pg": "^7.8.2",
+    "snyk": "^1.361.3"
+  },
+  "snyk": true
 }
