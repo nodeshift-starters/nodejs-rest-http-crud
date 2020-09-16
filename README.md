@@ -24,35 +24,19 @@ You can then start the application like this:
 Then go to http://localhost:3000
 
 
-#### Running on Minishift
+#### Running on Openshift
 
-First, make sure you have minishift setup and are logged in using `oc login`.
+First, make sure you have an instance of Openshift setup and are logged in using `oc login`.
 
 Then create a new project using the `oc` commands
 
 `oc new-project fun-node-fun`
 
-For this example, you will also need a postgres db running on your Minishift cluster.
+For this example, you will also need a postgres db running on your Openshift cluster.
 
 `oc new-app -e POSTGRESQL_USER=luke -ePOSTGRESQL_PASSWORD=secret -ePOSTGRESQL_DATABASE=my_data centos/postgresql-10-centos7 --name=my-database`
 
 Then run `npm run openshift` to deploy your app
 
-Then you can navigate to the newly exposed route, something similar to "http://nodejs-rest-http-crud-boosters.192.168.99.100.nip.io/",  this will probably be different based on your Minishift IP address
+Then you can navigate to the newly exposed route, something similar to "http://nodejs-rest-http-crud-boosters.192.168.99.100.nip.io/",  this will probably be different based on your Openshift IP address
 
-
-This app has an example of integration test using an [integration test tool for Node.js apps on OpenShift](https://github.com/nodeshift/rhoaster)
-
-Once you started your local OpenShift instance you can check it out by  running the following commands: 
-
-```
-npm run test:integration 
-```
-
-It will deploy the app to local OpenShift and run the tests located on `test/integration` directory.
-
-```
-npm run test:integration:undeploy
-```
-
-Performs undeploy of the app inside local OpenShift.
