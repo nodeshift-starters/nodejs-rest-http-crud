@@ -30,19 +30,20 @@ const packagejson = require('./package.json');
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
 
-async function updateApplicationYaml () {
+/* eslint node/no-path-concat: "warn" */
+async function updateAppYaml () {
   const applicationyaml = jsyaml.safeLoad(await readFile(`${__dirname}/.openshiftio/application.yaml`, {encoding: 'utf8'}));
   // We just need to update the RELEASE_VERSION parameter
-  applicationyaml.parameters = applicationyaml.parameters.map(param => {
-    if (param.name === 'RELEASE_VERSION') {
-      param.value = packagejson.version;
+  applicationyaml.parameters = applicationyaml.parameters.map(parameter => {
+    if (parameter.name === 'RELEASE_VERSION') {
+      parameter.value = packagejson.version;
     }
 
-    return param;
+    return parameter;
   });
 
   // Now write the file back out
   await writeFile(`${__dirname}/.openshiftio/application.yaml`, jsyaml.safeDump(applicationyaml, {skipInvalid: true}), {encoding: 'utf8'});
 }
 
-updateApplicationYaml();
+updateAppYaml();

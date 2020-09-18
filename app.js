@@ -30,10 +30,10 @@ const db = require('./lib/db');
 const fruits = require('./lib/routes/fruits');
 
 app.use(bodyParser.json());
-app.use((error, req, res, next) => {
-  if (req.body === '' || (error instanceof SyntaxError && error.type === 'entity.parse.failed')) {
-    res.status(415);
-    return res.send('Invalid payload!');
+app.use((error, request, response, next) => {
+  if (request.body === '' || (error instanceof SyntaxError && error.type === 'entity.parse.failed')) {
+    response.status(415);
+    return response.send('Invalid payload!');
   }
 
   next();
