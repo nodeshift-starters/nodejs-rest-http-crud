@@ -21,7 +21,7 @@ You can then start the application like this:
 `DB_USERNAME=luke DB_PASSWORD=secret ./bin/www`
 
 
-Then go to http://localhost:3000
+Then go to http://localhost:8080
 
 
 #### Running on Openshift
