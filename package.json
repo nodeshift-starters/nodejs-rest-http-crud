@@ -8,7 +8,8 @@
     "test": "tape test/*.js | tap-spec",
     "test:integration": "tape test/integration/*.js | tap-spec",
     "test:integration:undeploy": "nodeshift undeploy",
-    "lint": "xo",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "ci": "npm run lint && npm run coveralls",
@@ -22,15 +23,6 @@
     "scripts": {
       "postbump": "npm run postinstall && node release.js",
       "precommit": "git add .openshiftio/application.yaml licenses/"
-    }
-  },
-  "xo": {
-    "space": 2,
-    "rules": {
-      "space-before-function-paren": [
-        "error",
-        "always"
-      ]
     }
   },
   "files": [
@@ -52,6 +44,13 @@
   "homepage": "https://github.com/nodeshift-starters/nodejs-rest-http-crud#readme",
   "devDependencies": {
     "coveralls": "^3.1.0",
+    "eslint": "^7.13.0",
+    "eslint-config-semistandard": "^15.0.1",
+    "eslint-config-standard": "^16.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.1.0",
     "js-yaml": "^3.13.1",
     "nodeshift": "~6.2.0",
     "nyc": "~14.1.1",
@@ -60,8 +59,7 @@
     "standard-version": "^9.0.0",
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
-    "tape": "~4.13.2",
-    "xo": "^0.33.0"
+    "tape": "~4.13.2"
   },
   "dependencies": {
     "body-parser": "~1.19.0",
