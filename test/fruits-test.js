@@ -12,7 +12,7 @@ const mockDb = {
 
 test('test GET all fruits', t => {
   const mockApi = {
-    findAll: () => Promise.resolve({rows: [{id: 1}]})
+    findAll: () => Promise.resolve({ rows: [{ id: 1 }] })
   };
 
   // Mock the nested require
@@ -63,7 +63,7 @@ test('test GET fruit', t => {
   const mockApi = {
     find: id => {
       t.equal(id, '1', 'id should be 1 from the request params');
-      return Promise.resolve({rows: [{id}]});
+      return Promise.resolve({ rows: [{ id }] });
     }
   };
 
@@ -90,7 +90,7 @@ test('test GET fruit', t => {
 
 test('test GET fruit - return 404', t => {
   const mockApi = {
-    find: () => Promise.resolve({rowCount: 0})
+    find: () => Promise.resolve({ rowCount: 0 })
   };
 
   // Mock the nested require
@@ -145,7 +145,7 @@ test('test POST fruit', t => {
     create: (name, stock) => {
       t.equal(name, fruitData.name, `respone.body.name should be ${fruitData.name}`);
       t.equal(stock, fruitData.stock, `respone.body.stock should be ${fruitData.stock}`);
-      return Promise.resolve({rows: []});
+      return Promise.resolve({ rows: [] });
     }
   };
 
@@ -213,7 +213,7 @@ test('test POST fruit - error - id error', t => {
 
   supertest(app)
     .post('/api/fruits')
-    .send({name: 'Banana', stock: 10, id: 22})
+    .send({ name: 'Banana', stock: 10, id: 22 })
     .expect(422)
     .then(response => {
       t.equal(response.text, 'Id was invalidly set on request.', 'has an id error message');
@@ -366,7 +366,7 @@ test('test PUT fruit', t => {
       t.equal(options.name, fruitData.name, `respone.body.name should be ${fruitData.name}`);
       t.equal(options.stock, fruitData.stock, `respone.body.stock should be ${fruitData.stock}`);
       t.equal(options.id, fruitData.id, `respone.body.id should be ${fruitData.stock}`);
-      return Promise.resolve({rowCount: 1});
+      return Promise.resolve({ rowCount: 1 });
     }
   };
 
@@ -415,7 +415,7 @@ test('test PUT fruit - error - no stock', t => {
 
   supertest(app)
     .put('/api/fruits/20')
-    .send({name: 'name'})
+    .send({ name: 'name' })
     .expect(422)
     .then(response => {
       t.equal(response.text, 'The stock must be greater or equal to 0!', 'has a need stock message');
@@ -430,7 +430,7 @@ test('test PUT fruit - error - id error', t => {
 
   supertest(app)
     .put('/api/fruits/20')
-    .send({name: 'Banana', stock: 10, id: '22'})
+    .send({ name: 'Banana', stock: 10, id: '22' })
     .expect(422)
     .then(response => {
       t.equal(response.text, 'Id was invalidly set on request.', 'id error message');
@@ -447,7 +447,7 @@ test('test PUT fruit - not found', t => {
 
   const mockApi = {
     update: () => {
-      return Promise.resolve({rowCount: 0});
+      return Promise.resolve({ rowCount: 0 });
     }
   };
 
@@ -589,7 +589,7 @@ test('test DELETE fruit', t => {
   const mockApi = {
     remove: id => {
       t.equal(id, '1', 'id should be 1 from the request params');
-      return Promise.resolve({rowCount: 1});
+      return Promise.resolve({ rowCount: 1 });
     }
   };
 
@@ -614,7 +614,7 @@ test('test DELETE fruit', t => {
 test('test DELETE fruit - error - not found', t => {
   const mockApi = {
     remove: () => {
-      return Promise.resolve({rowCount: 0});
+      return Promise.resolve({ rowCount: 0 });
     }
   };
 

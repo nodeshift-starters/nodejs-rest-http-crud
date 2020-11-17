@@ -42,7 +42,7 @@ test('test create', t => {
 });
 
 test('test update', t => {
-  const result = fruits.update({name: 'name', stock: 'stock', id: 1});
+  const result = fruits.update({ name: 'name', stock: 'stock', id: 1 });
   t.equal(result instanceof Promise, true, 'should return a promise');
   t.end();
 });

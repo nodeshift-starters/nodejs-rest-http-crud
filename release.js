@@ -22,8 +22,9 @@
 
 // This file is run during the "postbump" lifecyle of standard-version
 // We need to be able to update the metadata.label.verion of the resource objects in the openshift template in the .openshiftio folder
-const {promisify} = require('util');
+const { promisify } = require('util');
 const fs = require('fs');
+const path = require('path');
 const jsyaml = require('js-yaml');
 const packagejson = require('./package.json');
 
@@ -32,7 +33,7 @@ const readFile = promisify(fs.readFile);
 
 /* eslint node/no-path-concat: "warn" */
 async function updateAppYaml () {
-  const applicationyaml = jsyaml.safeLoad(await readFile(`${__dirname}/.openshiftio/application.yaml`, {encoding: 'utf8'}));
+  const applicationyaml = jsyaml.safeLoad(await readFile(path.join(__dirname, '/.openshiftio/application.yaml'), { encoding: 'utf8' }));
   // We just need to update the RELEASE_VERSION parameter
   applicationyaml.parameters = applicationyaml.parameters.map(parameter => {
     if (parameter.name === 'RELEASE_VERSION') {
@@ -43,7 +44,7 @@ async function updateAppYaml () {
   });
 
   // Now write the file back out
-  await writeFile(`${__dirname}/.openshiftio/application.yaml`, jsyaml.safeDump(applicationyaml, {skipInvalid: true}), {encoding: 'utf8'});
+  await writeFile(path.join(__dirname, '/.openshiftio/application.yaml'), jsyaml.safeDump(applicationyaml, { skipInvalid: true }), { encoding: 'utf8' });
 }
 
 updateAppYaml();
