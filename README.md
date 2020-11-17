@@ -40,3 +40,44 @@ Then run `npm run openshift` to deploy your app
 
 Then you can navigate to the newly exposed route, something similar to "http://nodejs-rest-http-crud-boosters.192.168.99.100.nip.io/",  this will probably be different based on your Openshift IP address
 
+#### Install with Helm
+
+```sh 
+helm install os-postgres-db --set postgresqlPassword=secret,postgresqlDatabase=my_data,postgresqlUsername=Luke bitnami/postgresql
+```
+
+
+To deploy the app via Helm you will need docker installed and a kubernetes cluster.
+
+ First build the docker image
+
+
+ ```sh
+ docker build -t nodejs-rest-http-crud:1.0.0 .
+ ```
+
+ Once the image is built, you can deploy it to you kube cluster using helm. From within the top directory run:
+
+ ```sh
+ helm install test-app ./nodejs-rest-http-crud-helm
+ ```
+
+ This deploys the app to your kube cluster and displayed some commands which you need to run inorder to be able to reach the application. Just copy paste and run them.
+
+
+ ```sh
+ ```
+
+ To undeploy the app simply run:
+
+ ```sh
+ helm uninstall test-app
+ helm uninstall os-postgres-db
+ ```
+
+ Make sure you delete the postgres PVC if you want a fresh instance otherwise it will reuse the data/config from the prior instance
+
+ ```sh
+ kubectl get pvc
+ kubectl delete pvc data-os-postgres-db-postgresql-0
+ ```
