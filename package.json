@@ -1,6 +1,6 @@
 {
   "name": "nodejs-rest-http-crud",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "description": "",
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
@@ -14,7 +14,7 @@
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "ci": "npm run lint && npm run coveralls",
     "release": "standard-version -a",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14:latest",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
     "start": "node ."
   },

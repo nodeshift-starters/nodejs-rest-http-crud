@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v3.0.3...v4.0.0) (2020-11-26)
+
+
+### Features
+
+*  Add a full template to be used by the Openshift Catalog. ([#188](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/188)) ([2640126](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/2640126e52dc27da90a232f1ae9b0238fd1f1d68))
+* upgrade pg from 7.15.1 to 8.2.2 ([#184](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/184)) ([ef18358](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/ef18358281cf8b696b0091fbae049a916fcdc7f1))
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#173](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/173)) ([1b8fafe](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/1b8fafe89451bf895b1618d917b99c1138b00095))
+* package.json & package-lock.json to reduce vulnerabilities ([#175](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/175)) ([acd9095](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/acd90959959209071323cbe5037d6d4058666963))
+* package.json & package-lock.json to reduce vulnerabilities ([#186](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/186)) ([7aa67a2](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/7aa67a2d2d19b34300ec672ec4abb123e16fe585))
+* upgrade coveralls from 3.0.11 to 3.1.0 ([#180](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/180)) ([d79e3bc](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/d79e3bc26b26ba056091ce069d908988ccf37a20))
+* upgrade coveralls from 3.0.9 to 3.0.11 ([#169](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/169)) ([2509773](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/250977306cb7f3097032f115a8da1f5f79a8dd04))
+* upgrade debug from 4.1.1 to 4.2.0 ([#171](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/171)) ([d980577](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/d98057794b53c3adea7bbb5f810faf1bc1a2f066))
+* upgrade kube-probe from 0.4.0 to 0.5.0 ([#182](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/182)) ([a963814](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/a96381403401f0b1f38e34ef3734b07d473003aa))
+* upgrade nodeshift from 6.0.2 to 6.2.0 ([#181](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/181)) ([82990b8](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/82990b851fa266b16baecba03b3c4bfc37508fe8))
+* upgrade xo from 0.32.1 to 0.33.0 ([#187](https://github.com/nodeshift-starters/nodejs-rest-http-crud/issues/187)) ([bb2e5aa](https://github.com/nodeshift-starters/nodejs-rest-http-crud/commit/bb2e5aabd0ec41c6ccbdd7e05b8a07465a20be2f))
+
 ### [3.0.3](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v3.0.2...v3.0.3) (2020-04-27)
 
 ### [3.0.2](https://github.com/nodeshift-starters/nodejs-rest-http-crud/compare/v3.0.1...v3.0.2) (2019-11-26)
