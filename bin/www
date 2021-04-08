@@ -23,9 +23,11 @@
 /**
  * Module dependencies.
  */
+const pinoDebug = require('pino-debug');
+const logger = require('pino')({ level: process.env.LEVEL || 'debug', prettyPrint: { singleLine: true } }, process.stderr);
+pinoDebug(logger);
 
 const app = require('../app');
-const debug = require('debug')('nodejs-rest-http-crud:server');
 const http = require('http');
 
 /**
@@ -104,5 +106,5 @@ function onListening () {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  logger.info('Listening on ' + bind);
 }

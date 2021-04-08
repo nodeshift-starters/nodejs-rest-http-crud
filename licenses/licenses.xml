@@ -15,16 +15,6 @@
             </licenses>
         </dependency>
         <dependency>
-            <packageName>debug</packageName>
-            <version>4.2.0</version>
-            <licenses>
-                <license>
-                    <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
-                </license>
-            </licenses>
-        </dependency>
-        <dependency>
             <packageName>express</packageName>
             <version>4.17.1</version>
             <licenses>
@@ -51,6 +41,36 @@
                 <license>
                     <name>Apache License 2.0</name>
                     <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
+            <packageName>pino</packageName>
+            <version>6.11.2</version>
+            <licenses>
+                <license>
+                    <name>MIT License</name>
+                    <url>http://www.opensource.org/licenses/MIT</url>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
+            <packageName>pino-debug</packageName>
+            <version>2.0.0</version>
+            <licenses>
+                <license>
+                    <name>MIT License</name>
+                    <url>http://www.opensource.org/licenses/MIT</url>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
+            <packageName>pino-pretty</packageName>
+            <version>4.7.1</version>
+            <licenses>
+                <license>
+                    <name>MIT License</name>
+                    <url>http://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>
