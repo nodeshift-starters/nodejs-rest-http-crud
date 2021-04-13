@@ -51,7 +51,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.1.0",
-    "js-yaml": "^3.13.1",
+    "js-yaml": "^4.0.0",
     "nodeshift": "~6.2.0",
     "nyc": "~14.1.1",
     "proxyquire": "~2.1.3",
