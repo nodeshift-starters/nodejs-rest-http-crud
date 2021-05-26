@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 'use strict';
 
-const test = require('tape');
+const assert = require('assert');
 const proxyquire = require('proxyquire');
 
 const mockDb = {
@@ -13,42 +14,37 @@ const fruits = proxyquire('../lib/api/fruits', {
   '../db': mockDb
 });
 
-test('test api methods', t => {
-  t.equal(typeof fruits.find, 'function', 'find method should be a function');
-  t.equal(typeof fruits.findAll, 'function', 'findAll method should be a function');
-  t.equal(typeof fruits.create, 'function', 'create method should be a function');
-  t.equal(typeof fruits.update, 'function', 'update method should be a function');
-  t.equal(typeof fruits.remove, 'function', 'remove method should be a function');
+describe('Fruits methods', () => {
+  it('API', () => {
+    assert.strictEqual(typeof fruits.find, 'function');
+    assert.strictEqual(typeof fruits.findAll, 'function');
+    assert.strictEqual(typeof fruits.create, 'function');
+    assert.strictEqual(typeof fruits.update, 'function');
+    assert.strictEqual(typeof fruits.remove, 'function');
+  });
 
-  t.end();
-});
+  it('find all', () => {
+    const result = fruits.findAll();
+    assert.strictEqual(result instanceof Promise, true);
+  });
 
-test('test find all', t => {
-  const result = fruits.findAll();
-  t.equal(result instanceof Promise, true, 'should return a promise');
-  t.end();
-});
+  it('find', () => {
+    const result = fruits.find('id');
+    assert.strictEqual(result instanceof Promise, true);
+  });
 
-test('test find', t => {
-  const result = fruits.find('id');
-  t.equal(result instanceof Promise, true, 'should return a promise');
-  t.end();
-});
+  it('create', () => {
+    const result = fruits.create('name', 'stock');
+    assert.strictEqual(result instanceof Promise, true);
+  });
 
-test('test create', t => {
-  const result = fruits.create('name', 'stock');
-  t.equal(result instanceof Promise, true, 'should return a promise');
-  t.end();
-});
+  it('update', () => {
+    const result = fruits.update({ name: 'name', stock: 'stock', id: 1 });
+    assert.strictEqual(result instanceof Promise, true);
+  });
 
-test('test update', t => {
-  const result = fruits.update({ name: 'name', stock: 'stock', id: 1 });
-  t.equal(result instanceof Promise, true, 'should return a promise');
-  t.end();
-});
-
-test('test remove', t => {
-  const result = fruits.remove('id');
-  t.equal(result instanceof Promise, true, 'should return a promise');
-  t.end();
+  it('remove', () => {
+    const result = fruits.remove('id');
+    assert.strictEqual(result instanceof Promise, true);
+  });
 });

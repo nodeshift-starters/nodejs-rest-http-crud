@@ -1,8 +1,7 @@
+/* eslint-disable no-undef */
 'use strict';
 
-'use strict';
-
-const test = require('tape');
+const assert = require('assert');
 const supertest = require('supertest');
 const rhoaster = require('rhoaster');
 
@@ -11,124 +10,105 @@ const testEnvironment = rhoaster({
   dockerImage: 'registry.access.redhat.com/ubi8/nodejs-12'
 });
 
-testEnvironment.deploy()
-  .then(runTests)
-  .then(_ => test.onFinish(testEnvironment.undeploy))
-  .catch(console.error);
+describe('Fruits', () => {
+  let route;
+  before(async function () {
+    this.timeout(0);
+    route = await testEnvironment.deploy();
+  });
 
-function runTests (route) {
-  // GET fruits
-  test('/api/fruits', t => {
-    t.plan(2);
-    supertest(route)
+  it('/api/fruits', async () => {
+    const { body } = await supertest(route)
       .get('/api/fruits')
       .expect(200)
-      .expect('Content-Type', /json/)
-      .then(response => {
-        t.equal(Array.isArray(response.body), true, 'response is an Array');
-        t.equal(response.body.length, 3, 'should be initialized with 3 items');
-        t.end();
-      });
+      .expect('Content-Type', /json/);
+
+    assert.strictEqual(Array.isArray(body), true);
+    assert.strictEqual(body.length, 3);
   });
 
-  // GET 1 fruit
-  test('/api/fruit/:id', t => {
-    t.plan(4);
-    supertest(route)
+  it('/api/fruit/:id', async () => {
+    const { body } = await supertest(route)
       .get('/api/fruits/1')
       .expect(200)
-      .expect('Content-Type', /json/)
-      .then(response => {
-        t.equal(Array.isArray(response.body), false, 'not an array returned');
-        t.equal(response.body.id, 1, 'id is 1');
-        t.equal(response.body.name, 'Apple', 'name is Apple');
-        t.equal(response.body.stock, '10', 'stock is 10');
-        t.end();
-      });
+      .expect('Content-Type', /json/);
+
+    assert.strictEqual(Array.isArray(body), false);
+    assert.strictEqual(body.id, 1);
+    assert.strictEqual(body.name, 'Apple');
+    assert.strictEqual(body.stock, '10');
   });
 
-  // GET 1 fruit that doesn't exist
-  test('/api/fruit/:id - does not exist', t => {
-    t.plan(1);
-    supertest(route)
+  it('/api/fruit/:id - does not exist', async () => {
+    const response = await supertest(route)
       .get('/api/fruits/10')
       .expect(404)
-      .expect('Content-Type', /text/)
-      .then(response => {
-        t.equal(response.text, 'Item 10 not found', 'return not found string');
-        t.end();
-      });
+      .expect('Content-Type', /text/);
+
+    assert.strictEqual(response.text, 'Item 10 not found');
   });
 
-  // POST a fruit
-  test('POST /api/fruit/', t => {
-    t.plan(4);
+  it('POST /api/fruit/', async () => {
     const fruitData = {
       name: 'Banana',
       stock: '10'
     };
 
-    supertest(route)
+    const { body } = await supertest(route)
       .post('/api/fruits')
       .send(fruitData)
       .expect(201)
-      .expect('Content-Type', /json/)
-      .then(response => {
-        t.equal(Array.isArray(response.body), false, 'not an array returned');
-        t.ok(response.body.id, 'has a new id field');
-        t.equal(response.body.name, fruitData.name, `name is ${fruitData.name}`);
-        t.equal(response.body.stock, fruitData.stock, `stock is ${fruitData.stock}`);
+      .expect('Content-Type', /json/);
 
-        // Clean up
-        supertest(route).delete(`/api/fruits/${response.body.id}`).then(_ => ({}));
-        t.end();
-      });
+    assert.strictEqual(Array.isArray(body), false);
+    assert.ok(body.id);
+    assert.strictEqual(body.name, fruitData.name);
+    assert.strictEqual(body.stock, fruitData.stock);
+    // Clean up
+    await supertest(route).delete(`/api/fruits/${body.id}`);
   });
 
-  // POST a fruit
-  test('POST /api/fruit/ - send non json', t => {
+  it('POST /api/fruit/ - send non json', async () => {
     const fruitData = '{name: \'Banana\', stock: \'10\'}';
 
-    supertest(route)
+    const response = await supertest(route)
       .post('/api/fruits')
       .send(fruitData)
-      .expect(422)
-      .then(() => {
-        t.pass('should fail with 422');
-        t.end();
-      });
+      .expect(422);
+
+    assert.strictEqual(response.statusCode, 422);
   });
 
-  // PUT a fruit
-  test('PUT /api/fruit/:id', t => {
+  it('PUT /api/fruit/:id', async () => {
     const fruitData = {
       name: 'put fruit',
       stock: '10'
     };
 
-    // First create the new fruit
-    supertest(route)
+    let response = await supertest(route)
       .post('/api/fruits')
       .send(fruitData)
-      .expect(201)
-      .then(response => {
-        const { id } = response.body;
+      .expect(201);
+    assert.strictEqual(response.statusCode, 201);
 
-        const updatedFruit = {
-          name: response.body.name,
-          stock: '20'
-        };
+    const { id } = response.body;
 
-        supertest(route)
-          .put(`/api/fruits/${id}`)
-          .send(updatedFruit)
-          .expect(204)
-          .then(() => {
-            // Clean up
-            t.pass('should return with an empty response');
-            supertest(route).delete(`/api/fruits/${response.body.id}`).then(_ => ({}));
-            t.end();
-          });
-      });
+    const updatedFruit = {
+      name: response.body.name,
+      stock: '20'
+    };
+
+    response = await supertest(route)
+      .put(`/api/fruits/${id}`)
+      .send(updatedFruit)
+      .expect(204);
+    assert.strictEqual(response.statusCode, 204);
+    // Clean up
+    await supertest(route).delete(`/api/fruits/${response.body.id}`);
   });
-}
+
+  after(async function () {
+    this.timeout(0);
+    await testEnvironment.undeploy();
+  });
+});
