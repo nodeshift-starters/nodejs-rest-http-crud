@@ -24,7 +24,6 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const probe = require('kube-probe');
 const db = require('./lib/db');
 
 const fruits = require('./lib/routes/fruits');
@@ -46,7 +45,13 @@ app.use('/licenses', express.static(path.join(__dirname, 'licenses')));
 app.use('/api', fruits);
 
 // Add a health check
-probe(app);
+app.use('/ready', (request, response) => {
+  return response.sendStatus(200);
+});
+
+app.use('/live', (request, response) => {
+  return response.sendStatus(200);
+});
 
 db.init().then(() => {
   console.log('Database init\'d');
