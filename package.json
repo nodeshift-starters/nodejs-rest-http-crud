@@ -6,12 +6,9 @@
   "license": "Apache-2.0",
   "scripts": {
     "pretest": "eslint --ignore-path .gitignore .",
-    "test": "mocha",
+    "test": "nyc mocha",
     "test:integration": "mocha test/integration/*.js",
     "test:integration:undeploy": "nodeshift undeploy",
-    "coverage": "nyc npm test",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "ci": "npm run coveralls",
     "release": "standard-version -a",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14:latest",
     "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
