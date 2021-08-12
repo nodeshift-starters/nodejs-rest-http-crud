@@ -24,7 +24,7 @@
   <!-- Load AngularJS -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script type="text/javascript">
-    var app = angular.module("FruitManagement", []);
+    const app = angular.module("FruitManagement", []);
 
     //Controller Part
     app.controller("FruitManagementController", function ($scope, $http) {
@@ -43,9 +43,9 @@
 
       //HTTP POST/PUT methods for add/edit fruits
       $scope.update = function () {
-        var method = "";
-        var url = "";
-        var data = {};
+        let method = "";
+        let url = "";
+        let data = {};
         if ($scope.form.id == -1) {
           //Id is absent so add fruits - POST operation
           method = "POST";
