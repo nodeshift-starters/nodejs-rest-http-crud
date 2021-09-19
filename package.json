@@ -46,7 +46,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "js-yaml": "^4.1.0",
-    "mocha": "^9.1.0",
+    "mocha": "^9.1.1",
     "nodeshift": "~8.4.0",
     "nyc": "~15.1.0",
     "proxyquire": "~2.1.3",
