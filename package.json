@@ -51,7 +51,7 @@
     "nyc": "~15.1.0",
     "proxyquire": "~2.1.3",
     "rhoaster": "^0.4.1",
-    "standard-version": "^9.3.1",
+    "standard-version": "^9.3.2",
     "supertest": "~6.1.6"
   },
   "dependencies": {
