@@ -60,7 +60,7 @@
     "express": "~4.17.1",
     "license-reporter": "~1.4.0",
     "pg": "^8.7.1",
-    "pino": "^6.13.2",
+    "pino": "^7.2.0",
     "pino-debug": "^2.0.0",
     "pino-pretty": "^5.1.3"
   }
