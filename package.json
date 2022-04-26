@@ -8,9 +8,16 @@
     "pretest": "eslint --ignore-path .gitignore .",
     "test": "nyc --reporter=lcov mocha",
     "release": "standard-version -a",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14:latest",
     "start": "node ."
   },
   "main": "./bin/www",
+  "standard-version": {
+    "scripts": {
+      "postbump": "npm run postinstall && node release.js",
+      "precommit": "git add .openshiftio/application.yaml"
+    }
+  },
   "files": [
     "package.json",
     "app.js",
