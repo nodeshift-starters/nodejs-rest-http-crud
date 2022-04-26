@@ -20,25 +20,22 @@ In this example, the db user is `luke`, the password is `secret` and the databas
 
 You can then start the application like this:
 
-`DB_USERNAME=luke DB_PASSWORD=secret ./bin/www`
+Set the environment variables for username and password
+(copy and paste in your terminal)
 
+```
+DB_USERNAME=luke
+```
+
+```
+DB_PASSWORD=secret
+```
+
+Start the app
+
+```
+npm start
+```
 
 Then go to http://localhost:8080
-
-
-#### Running on Openshift
-
-First, make sure you have an instance of Openshift setup and are logged in using `oc login`.
-
-Then create a new project using the `oc` commands
-
-`oc new-project fun-node-fun`
-
-For this example, you will also need a postgres db running on your Openshift cluster.
-
-`oc new-app -e POSTGRESQL_USER=luke -ePOSTGRESQL_PASSWORD=secret -ePOSTGRESQL_DATABASE=my_data centos/postgresql-10-centos7 --name=my-database`
-
-Then run `npm run openshift` to deploy your app
-
-Then you can navigate to the newly exposed route, something similar to "http://nodejs-rest-http-crud-boosters.192.168.99.100.nip.io/",  this will probably be different based on your Openshift IP address
 
