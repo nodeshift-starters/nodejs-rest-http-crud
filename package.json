@@ -49,7 +49,7 @@
     "body-parser": "~1.19.0",
     "debug": "^4.3.3",
     "express": "~4.17.1",
-    "kube-service-bindings": "^0.0.4-0",
+    "kube-service-bindings": "^0.0.9",
     "pg": "^8.7.1",
     "pino": "^7.5.1",
     "pino-debug": "^2.0.0",
