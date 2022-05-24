@@ -27,7 +27,15 @@
   "homepage": "https://github.com/nodeshift-starters/nodejs-rest-http-crud#readme",
   "devDependencies": {
     "eslint": "^7.32.0",
-    "eslint-config-semistandard": "^16.0.0"
+    "eslint-config-semistandard": "^16.0.0",
+    "@opentelemetry/api": "^1.1.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.28.0",
+    "@opentelemetry/exporter-collector": "^0.25.0",
+    "@opentelemetry/instrumentation": "^0.28.0",
+    "@opentelemetry/resources": "^1.0.1",
+    "@opentelemetry/sdk-node": "^0.28.0",
+    "@opentelemetry/semantic-conventions": "^1.0.1",
+    "@opentelemetry/tracing": "^0.24.0"
   },
   "dependencies": {
     "body-parser": "~1.20.0",
