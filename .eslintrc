@@ -1,5 +1,8 @@
 {
   "extends": "semistandard",
+  "env": {
+    "es6": true
+  },
   "rules": {
     "prefer-const": "error",
     "block-scoped-var": "error",

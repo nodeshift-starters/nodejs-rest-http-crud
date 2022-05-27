@@ -1,0 +1,41 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+processors:
+  batch:
+    timeout: 1s
+  resource:
+    attributes:
+      - key: fruits.key
+        value: "gateway"
+        action: insert
+exporters:
+  logging:    # Logs
+    loglevel: info
+  prometheus: # Metrics
+    endpoint: "0.0.0.0:8889"
+    send_timestamps: true
+    namespace: fruits
+  jaeger:     # Traces
+    endpoint: jaeger:14250
+    tls:
+      insecure: true
+service:
+  telemetry:
+    logs:
+      level: debug
+      initial_fields:
+        service: fruits
+    metrics:
+      level: detailed
+      address: 0.0.0.0:8888
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      exporters: [logging, prometheus]
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging, jaeger]

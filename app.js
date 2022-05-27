@@ -17,6 +17,7 @@
  *  limitations under the License.
  *
  */
+require('./tracer');
 
 const path = require('path');
 const express = require('express');
