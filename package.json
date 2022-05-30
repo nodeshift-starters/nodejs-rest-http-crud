@@ -33,7 +33,6 @@
   "dependencies": {
     "@opentelemetry/api": "^1.1.0",
     "@opentelemetry/exporter-jaeger": "^1.2.0",
-    "@opentelemetry/exporter-prometheus": "^0.28.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.28.0",
     "@opentelemetry/instrumentation": "^0.28.0",
     "@opentelemetry/instrumentation-express": "^0.29.0",

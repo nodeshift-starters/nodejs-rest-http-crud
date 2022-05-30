@@ -14,10 +14,6 @@ processors:
 exporters:
   logging:    # Logs
     loglevel: info
-  prometheus: # Metrics
-    endpoint: "0.0.0.0:8889"
-    send_timestamps: true
-    namespace: fruits
   jaeger:     # Traces
     endpoint: jaeger:14250
     tls:
@@ -28,13 +24,7 @@ service:
       level: debug
       initial_fields:
         service: fruits
-    metrics:
-      level: detailed
-      address: 0.0.0.0:8888
   pipelines:
-    metrics:
-      receivers: [otlp]
-      exporters: [logging, prometheus]
     traces:
       receivers: [otlp]
       processors: [batch]
