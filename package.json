@@ -5,13 +5,15 @@
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
-    "postinstall": "eslint --fix --ignore-path .gitignore .",
+    "lint": "eslint --fix --ignore-path .gitignore .",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14",
     "start": "node ."
   },
   "main": "./bin/www",
   "files": [
     "package.json",
     "app.js",
+    "tracer.js",
     "public",
     "bin",
     "lib",
@@ -28,7 +30,8 @@
   "devDependencies": {
     "eslint": "^8.16.0",
     "eslint-config-semistandard": "^16.0.0",
-    "eslint-config-standard": "^17.0.0"
+    "eslint-config-standard": "^17.0.0",
+    "nodeshift": "^8.7.0"
   },
   "dependencies": {
     "@opentelemetry/api": "^1.1.0",
