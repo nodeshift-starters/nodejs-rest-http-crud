@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+    service.beta.openshift.io/inject-cabundle: "true"
+  name: opentel-cabundle
+---
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: opentel
+  namespace: opentel
+spec:
+  mode: deployment
+  config: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+          http:
+            endpoint: opentel-collector-headless.opentel.svc:4318
+    processors:
+      batch:
+        timeout: 1s
+      resource:
+        attributes:
+          - key: fruits.key
+            value: "gateway"
+            action: insert
+    exporters:
+      logging:
+        loglevel: info
+      jaeger:
+        endpoint: opentel-jaeger-collector-headless.opentel.svc:14250
+        tls:
+          ca_file: "/etc/pki/ca-trust/source/service-ca/service-ca.crt"
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [logging, jaeger]
+  volumeMounts:
+    - mountPath: /etc/pki/ca-trust/source/service-ca
+      name: cabundle-volume
+  volumes:
+    - configMap:
+        name: opentel-cabundle
+      name: cabundle-volume
