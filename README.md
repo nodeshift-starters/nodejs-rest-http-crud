@@ -42,3 +42,30 @@ Then run `npm run openshift` to deploy your app
 
 Then you can navigate to the newly exposed route, something similar to "http://nodejs-rest-http-crud-boosters.192.168.99.100.nip.io/",  this will probably be different based on your Openshift IP address
 
+#### Running on Openshift with traces enabled
+
+Log in with kubeadmin and install the [`OpenShift Distributed Tracing Platform Operator`](https://docs.openshift.com/container-platform/4.10/distr_tracing/distr_tracing_install/distr-tracing-deploying-jaeger.html) and [`OpenShift Distributed Tracing Data Collection Operator (Technology Preview)`](https://docs.openshift.com/container-platform/4.10/distr_tracing/distr_tracing_install/distr-tracing-deploying-otel.html) via operator hub.
+ 
+Then create a new project using the `oc` commands
+
+```
+oc new-project opentel
+```
+
+Give to `developer` user admin rights on the project
+
+```
+oc policy add-role-to-user admin developer -n opentel
+```
+
+Create a Jaeger instance
+
+```
+oc apply -f tracing/jaeger.yml
+```
+
+Create an OpenTelemetry instance
+
+```
+oc apply -f tracing/opentel-collector.yml
+```
