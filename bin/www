@@ -24,7 +24,13 @@
  * Module dependencies.
  */
 const pinoDebug = require('pino-debug');
-const logger = require('pino')({ level: process.env.LEVEL || 'debug', prettyPrint: { singleLine: true } }, process.stderr);
+const pino = require('pino');
+const logger = pino({
+  transport: {
+    target: 'pino-pretty'
+  }
+});
+
 pinoDebug(logger);
 
 const app = require('../app');
