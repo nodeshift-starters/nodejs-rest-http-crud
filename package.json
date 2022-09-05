@@ -8,7 +8,7 @@
     "pretest": "eslint --ignore-path .gitignore .",
     "test": "nyc --reporter=lcov mocha",
     "release": "standard-version -a",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16",
     "start": "node ."
   },
   "main": "./bin/www",
