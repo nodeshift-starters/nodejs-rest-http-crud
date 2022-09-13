@@ -40,8 +40,12 @@ For this example, you will also need a postgres db running on your Openshift clu
 
 Then run `npm run openshift` to deploy your app
 
-Then you can navigate to the newly exposed route, something similar to "http://nodejs-rest-http-crud-boosters.192.168.99.100.nip.io/",  this will probably be different based on your Openshift IP address
-
+Run the following command to show the newly exposed route that you can navigate:
+```
+oc get route nodejs-rest-http-crud
+NAME                    HOST/PORT                                        PATH   SERVICES                PORT   TERMINATION   WILDCARD
+nodejs-rest-http-crud   nodejs-rest-http-crud-opentel.apps-crc.testing          nodejs-rest-http-crud   8080                 None
+```
 #### Running on Openshift with traces enabled
 
 Log in with kubeadmin and install the [`OpenShift Distributed Tracing Platform Operator`](https://docs.openshift.com/container-platform/4.10/distr_tracing/distr_tracing_install/distr-tracing-deploying-jaeger.html) and [`OpenShift Distributed Tracing Data Collection Operator (Technology Preview)`](https://docs.openshift.com/container-platform/4.10/distr_tracing/distr_tracing_install/distr-tracing-deploying-otel.html) via operator hub.
