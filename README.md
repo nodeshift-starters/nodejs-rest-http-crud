@@ -48,28 +48,6 @@ nodejs-rest-http-crud   nodejs-rest-http-crud-opentel.apps-crc.testing          
 ```
 #### Running on Openshift with traces enabled
 
-Log in with kubeadmin and install the [`OpenShift Distributed Tracing Platform Operator`](https://docs.openshift.com/container-platform/4.10/distr_tracing/distr_tracing_install/distr-tracing-deploying-jaeger.html) and [`OpenShift Distributed Tracing Data Collection Operator (Technology Preview)`](https://docs.openshift.com/container-platform/4.10/distr_tracing/distr_tracing_install/distr-tracing-deploying-otel.html) via operator hub.
- 
-Then create a new project using the `oc` commands
+* [Read more](./OTEL.md)
 
-```
-oc new-project opentel
-```
-
-Give to `developer` user admin rights on the project
-
-```
-oc policy add-role-to-user admin developer -n opentel
-```
-
-Create a Jaeger instance
-
-```
-oc apply -f tracing/jaeger.yml
-```
-
-Create an OpenTelemetry instance
-
-```
-oc apply -f tracing/opentel-collector.yml
-```
+* The main branch is using this version https://developers.redhat.com/articles/2022/08/23/how-use-opentelemetry-trace-nodejs-applications

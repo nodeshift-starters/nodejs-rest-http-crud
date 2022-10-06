@@ -23,15 +23,7 @@
 /**
  * Module dependencies.
  */
-const pinoDebug = require('pino-debug');
-const pino = require('pino');
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  }
-});
-
-pinoDebug(logger);
+const logger = require('../logger.js');
 
 const app = require('../app');
 const http = require('http');
@@ -93,10 +85,10 @@ function onError (error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      logger.error(bind + ' requires elevated privileges');
       process.exit(1);
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      logger.error(bind + ' is already in use');
       process.exit(1);
     default:
       throw error;

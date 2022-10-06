@@ -18,7 +18,7 @@
  *
  */
 
-// require('./tracer');
+const logger = require('./logger.js');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -53,9 +53,9 @@ app.use('/live', (request, response) => {
 });
 
 db.init().then(() => {
-  console.log('Database init\'d');
+  logger.info('Database init\'d');
 }).catch(error => {
-  console.log(error);
+  logger.error(error);
 });
 
 module.exports = app;
