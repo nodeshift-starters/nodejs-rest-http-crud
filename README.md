@@ -26,6 +26,12 @@ You can then start the application like this:
 Then go to http://localhost:8080
 
 
+Other options:
+
+* `npm run dev` same as `npm start` but with pretty output log.
+* `npm run dev:debug` shows debug information.
+
+
 #### Running on Openshift
 
 First, make sure you have an instance of Openshift setup and are logged in using `oc login`.
@@ -49,5 +55,3 @@ nodejs-rest-http-crud   nodejs-rest-http-crud-opentel.apps-crc.testing          
 #### Running on Openshift with traces enabled
 
 * [Read more](./OTEL.md)
-
-* The main branch is using this version https://developers.redhat.com/articles/2022/08/23/how-use-opentelemetry-trace-nodejs-applications
