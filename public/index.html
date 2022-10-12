@@ -1,155 +1,174 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8"/>
-  <title>
-    Fruit Stock Management
-  </title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wingcss/0.1.8/wing.min.css"/>
-  <style>
-    input[type=number] {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      -webkit-transition: .5s;
-      transition: .5s;
-      outline: 0;
-      font-family: 'Open Sans',serif;
-    }
-  </style>
-  <!-- Load AngularJS -->
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script type="text/javascript">
-    const app = angular.module("FruitManagement", []);
-
-    //Controller Part
-    app.controller("FruitManagementController", function ($scope, $http) {
-
-      //Initialize page with default data which is blank in this example
-      $scope.fruits = [];
-
-      $scope.form = {
-        id: -1,
-        name: "",
-        stock: 0
-      };
-
-      //Now load the data from server
-      _refreshPageData();
-
-      //HTTP POST/PUT methods for add/edit fruits
-      $scope.update = function () {
-        let method = "";
-        let url = "";
-        let data = {};
-        if ($scope.form.id == -1) {
-          //Id is absent so add fruits - POST operation
-          method = "POST";
-          url = '/api/fruits';
-          data.name = $scope.form.name;
-          data.stock = $scope.form.stock;
-        } else {
-          //If Id is present, it's edit operation - PUT operation
-          method = "PUT";
-          url = '/api/fruits/' + $scope.form.id;
-          data.name = $scope.form.name;
-          data.stock = $scope.form.stock;
-        }
-
-        $http({
-          method: method,
-          url: url,
-          data: angular.toJson(data),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }).then(_success, _error);
-      };
-
-      //HTTP DELETE- delete fruit by id
-      $scope.remove = function (fruit) {
-        $http({
-          method: 'DELETE',
-          url: '/api/fruits/' + fruit.id
-        }).then(_success, _error);
-      };
-
-      //In case of edit fruits, populate form with fruit data
-      $scope.edit = function (fruit) {
-        $scope.form.name = fruit.name;
-        $scope.form.stock = parseInt(fruit.stock);
-        $scope.form.id = fruit.id;
-      };
-
-      /* Private Methods */
-      //HTTP GET- get all fruits collection
-      function _refreshPageData() {
-        $http({
-          method: 'GET',
-          url: '/api/fruits'
-        }).then(function successCallback(response) {
-          $scope.fruits = response.data;
-        }, function errorCallback(response) {
-          console.log(response.statusText);
-        });
+  <head>
+    <meta charset="utf-8" />
+    <title>Fruit Stock Management</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/wingcss/0.1.8/wing.min.css"
+    />
+    <style>
+      input[type='number'] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: 0;
+        font-family: 'Open Sans', serif;
       }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="app">
+      <h1>Node.js Crud Application</h1>
 
-      function _success(response) {
-        _refreshPageData();
-        _clearForm()
-      }
+      <p>
+        This application demonstrates how a Node.js application implements a
+        CRUD endpoint to manage <em>fruits</em>. This management interface
+        invokes the CRUD service endpoint, that interact with a PosgreSQL
+        database .
+      </p>
 
-      function _error(response) {
-        alert(response.data ? JSON.stringify(response.data) : response.statusText)
-      }
+      <h3>Add/Edit a fruit</h3>
 
-      //Clear the form
-      function _clearForm() {
-        $scope.form.name = "";
-        $scope.form.stock = 0;
-        $scope.form.id = -1;
-      }
-    });
-  </script>
-</head>
-<body ng-app="FruitManagement" ng-controller="FruitManagementController">
+      <form @submit.prevent="update">
+        <div class="row">
+          <div class="col-6">
+            <input
+              v-model="form.name"
+              type="text"
+              placeholder="Name"
+              ref="name"
+              size="60"
+            />
+          </div>
+          <div class="col-6">
+            <input
+              type="number"
+              v-model="form.stock"
+              placeholder="Stock"
+              ref="stock"
+              size="60"
+              min="0"
+            />
+          </div>
+        </div>
+        <input type="submit" value="Save" />
+      </form>
 
-<div class="container">
+      <h3>Fruit List</h3>
 
-  <h1>Node.js Crud Application</h1>
+      <div class="row">
+        <div class="col-2">Name</div>
+        <div class="col-2">Stock</div>
+      </div>
 
-  <p>This application demonstrates how a Node.js application implements a CRUD endpoint to manage <em>fruits</em>.
-    This management interface invokes the CRUD service endpoint, that interact with a PosgreSQL database
-    .</p>
-
-  <h3>Add/Edit a fruit</h3>
-
-  <form ng-submit="update()">
-    <div class="row">
-      <div class="col-6"><input type="text" placeholder="Name" ng-model="form.name" size="60"/></div>
-      <div class="col-6"><input type="number" placeholder="Stock" ng-model="form.stock" size="60" min="0"/></div>
+      <div class="row" v-for="fruit in fruits">
+        <div class="col-2">{{ fruit.name }}</div>
+        <div class="col-2">{{ fruit.stock }}</div>
+        <div class="col-8">
+          <a @click="edit( fruit )" class="btn">Edit</a>
+          <a @click="remove( fruit )" class="btn">Remove</a>
+        </div>
+      </div>
     </div>
-    <input type="submit" value="Save"/>
-  </form>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.10/vue.min.js"
+      integrity="sha512-H8u5mlZT1FD7MRlnUsODppkKyk+VEiCmncej8yZW1k/wUT90OQon0F9DSf/2Qh+7L/5UHd+xTLrMszjHEZc2BA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          form: {
+            id: -1,
+            name: '',
+            stock: 0,
+          },
+          fruits: [],
+          method: '',
+          url: '',
+          data: {},
+          fruit: '',
+        },
 
-  <h3>Fruit List</h3>
+        methods: {
+          edit(fruit) {
+            this.form.name = fruit.name;
+            this.form.stock = parseInt(fruit.stock);
+            this.form.id = fruit.id;
+          },
+          async remove(fruit) {
+            await fetch(`/api/fruits/${fruit.id}`, {
+              method: 'DELETE',
+            })
+              .then(this._success)
+              .catch(this._error);
+          },
+          async _refreshPageData() {
+            const result = await fetch('/api/fruits', {
+              method: 'GET',
+            });
+            if (result.ok) {
+              const resultData = await result.json();
+              this.fruits = resultData;
+            } else {
+              console.log(result.statusText);
+            }
+          },
+          async update() {
+            this.form.name = this.$refs.name.value;
+            this.form.stock = this.$refs.stock.value;
+            if (this.form.id == -1) {
+              this.method = 'POST';
+              this.url = '/api/fruits';
+              this.data.name = this.form.name;
+              this.data.stock = this.form.stock;
+            } else {
+              this.method = 'PUT';
+              this.url = '/api/fruits/' + this.form.id;
+              this.data.name = this.form.name;
+              this.data.stock = this.form.stock;
+            }
 
-  <div class="row">
-    <div class="col-2">Name</div>
-    <div class="col-2">Stock</div>
-  </div>
-
-  <div class="row" ng-repeat="fruit in fruits">
-    <div class="col-2">{{ fruit.name }}</div>
-    <div class="col-2">{{ fruit.stock }}</div>
-    <div class="col-8"><a ng-click="edit( fruit )" class="btn">Edit</a> <a ng-click="remove( fruit )" class="btn">Remove</a></div>
-  </div>
-
-</div>
-
-</body>
+            await fetch(this.url, {
+              method: this.method,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(this.data),
+            })
+              .then(this._success)
+              .catch(this._error);
+          },
+          _success(response) {
+            this._refreshPageData();
+            this._clearForm();
+          },
+          _error(response) {
+            alert(
+              response.data
+                ? JSON.stringify(response.data)
+                : response.statusText
+            );
+          },
+          _clearForm() {
+            this.form.name = '';
+            this.form.stock = 0;
+            this.form.id = -1;
+          },
+        },
+        mounted: function () {
+          this._refreshPageData();
+        },
+      });
+    </script>
+  </body>
 </html>
