@@ -1,0 +1,33 @@
+version: "2"
+
+services:
+  postgres:
+    hostname: postgres
+    restart: always
+    image: centos/postgresql-10-centos7
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment: 
+      POSTGRESQL_USER: luke
+      POSTGRESQL_PASSWORD: secret
+      POSTGRESQL_DATABASE: my_data
+    ports:
+      - "5432:5432"
+  nodejs-http-crud:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      port: 8080
+      POSTGRESQL_SERVICE_HOST: postgres
+      POSTGRES_USER: luke
+      POSTGRESQL_PASSWORD: secret
+      POSTGRESQL_DATABASE: my_data
