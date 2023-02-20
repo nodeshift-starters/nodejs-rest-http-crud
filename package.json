@@ -49,7 +49,7 @@
     "@opentelemetry/instrumentation": "^0.33.0",
     "@opentelemetry/instrumentation-express": "^0.31.3",
     "@opentelemetry/instrumentation-http": "^0.33.0",
-    "@opentelemetry/instrumentation-pg": "^0.31.1",
+    "@opentelemetry/instrumentation-pg": "^0.32.0",
     "@opentelemetry/resources": "^1.6.0",
     "@opentelemetry/sdk-trace-base": "^1.6.0",
     "@opentelemetry/sdk-trace-node": "^1.6.0",
