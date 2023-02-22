@@ -8,8 +8,8 @@
     "pretest": "eslint --ignore-path .gitignore .",
     "test": "nyc --reporter=lcov mocha",
     "release": "standard-version -a",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-16",
-    "openshift:enable:trace": "nodeshift --deploy.env NODE_OPTIONS='--require ./tracing.js' --dockerImage=registry.access.redhat.com/ubi8/nodejs-16",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-18",
+    "openshift:enable:trace": "nodeshift --deploy.env NODE_OPTIONS='--require ./tracing.js' --dockerImage=registry.access.redhat.com/ubi8/nodejs-18",
     "start": "node .",
     "dev": "node . | npx pino-pretty",
     "dev:debug": "DEBUG=* node . "
