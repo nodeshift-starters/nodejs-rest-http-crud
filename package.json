@@ -44,7 +44,7 @@
     "supertest": "^6.3.3"
   },
   "dependencies": {
-    "@opentelemetry/api": "^1.2.0",
+    "@opentelemetry/api": "^1.8.0",
     "@opentelemetry/exporter-jaeger": "^1.6.0",
     "@opentelemetry/instrumentation": "^0.33.0",
     "@opentelemetry/instrumentation-express": "^0.31.3",
